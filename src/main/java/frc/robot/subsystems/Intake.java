@@ -13,23 +13,23 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants;
 
-public class Shooter extends SubsystemBase {
+public class Intake extends SubsystemBase {
     private CANSparkMax motor;
     private CANSparkMax motor2;
 
     DoubleSolenoid intakeSolenoid;
-    public Shooter() {
+    public Intake() {
         /** Create a new object to control the SPARK MAX motor controllers. */
-        motor = new CANSparkMax(Constants.Shooter1, MotorType.kBrushless);
-        motor2 = new CANSparkMax(Constants.Shooter2, MotorType.kBrushless);
+        motor = new CANSparkMax(Constants.Intake1, MotorType.kBrushless);
+        motor2 = new CANSparkMax(Constants.Intake2, MotorType.kBrushless);
         /**
          * Restore motor controller parameters to factory default until the next controller 
          * reboot.
          */
         motor.restoreFactoryDefaults();
         motor2.restoreFactoryDefaults();
-        motor.setSmartCurrentLimit(Constants.ShooterAmpLimit);
-        motor2.setSmartCurrentLimit(Constants.ShooterAmpLimit);
+        motor.setSmartCurrentLimit(Constants.IntakeAmpLimit);
+        motor2.setSmartCurrentLimit(Constants.IntakeAmpLimit);
 
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
@@ -43,7 +43,7 @@ public class Shooter extends SubsystemBase {
     }
 
     /** Retrieve cargo for transportation. */
-    public Command fire() {
+    public Command intake() {
         return runOnce(
         ()->{
             motor.set(1);

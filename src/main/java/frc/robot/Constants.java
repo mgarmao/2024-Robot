@@ -22,9 +22,11 @@ public final class Constants
 
   public static final int Shooter1 = 9;
   public static final int Shooter2 = 10;
-
   public static final int ShooterAmpLimit = 40;
 
+  public static final int Intake1 = 10;
+  public static final int Intake2 = 10;
+  public static final int IntakeAmpLimit = 40;
 
   public static final class Auton
   {
