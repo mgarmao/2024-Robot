@@ -22,16 +22,16 @@ public class Shooter extends SubsystemBase {
     DoubleSolenoid intakeSolenoid;
     public Shooter() {
         /** Create a new object to control the SPARK MAX motor controllers. */
-        motor = new CANSparkMax(9, MotorType.kBrushless);
-        motor2 = new CANSparkMax(10, MotorType.kBrushless);
+        motor = new CANSparkMax(Constants.Shooter1, MotorType.kBrushless);
+        motor2 = new CANSparkMax(Constants.Shooter2, MotorType.kBrushless);
         /**
          * Restore motor controller parameters to factory default until the next controller 
          * reboot.
          */
         motor.restoreFactoryDefaults();
         motor2.restoreFactoryDefaults();
-        motor.setSmartCurrentLimit(40);
-        motor2.setSmartCurrentLimit(40);
+        motor.setSmartCurrentLimit(Constants.ShooterAmpLimit);
+        motor2.setSmartCurrentLimit(Constants.ShooterAmpLimit);
 
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
