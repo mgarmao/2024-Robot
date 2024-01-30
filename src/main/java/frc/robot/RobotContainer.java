@@ -10,7 +10,7 @@ import frc.robot.subsystems.Shooter;
 
 public class RobotContainer {
 
-    private final CommandXboxController xboxController = new CommandXboxController(0);
+    private final CommandXboxController xboxController = new CommandXboxController(Constants.CONTROLLER_OPERATOR);
     private final Shooter shooter = new Shooter(); // Assuming you have a Shooter subsystem
 
     public RobotContainer() {
