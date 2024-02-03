@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
@@ -17,7 +16,6 @@ public class Climber extends SubsystemBase {
     private CANSparkMax motor;
     private CANSparkMax motor2;
 
-    DoubleSolenoid intakeSolenoid;
     public Climber() {
         /** Create a new object to control the SPARK MAX motor controllers. */
         motor = new CANSparkMax(Constants.Climber1, MotorType.kBrushless);
