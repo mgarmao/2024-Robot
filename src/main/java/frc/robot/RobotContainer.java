@@ -14,17 +14,19 @@ import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.commands.swervedrive.drivebase.TeleopDrive;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Photon;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 
 public class RobotContainer {
-    private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve"));
+    public static final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve"));
     private final CommandXboxController driverXbox = new CommandXboxController(Constants.CONTROLLER_OPERATOR);
     CommandJoystick driverController = new CommandJoystick(1);
     private final Shooter shooter = new Shooter(); // Assuming you have a Shooter subsystem
     private final Climber climber = new Climber();
     private final Intake intake = new Intake();
+    public static final Photon photon = new Photon();   
 
     public RobotContainer() {
         configureButtonBindings();
