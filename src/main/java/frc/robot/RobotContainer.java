@@ -20,7 +20,7 @@ import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 
 public class RobotContainer {
-    public static final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve"));
+    public final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve"));
     private final CommandXboxController driverXbox = new CommandXboxController(Constants.CONTROLLER_OPERATOR);
     CommandJoystick driverController = new CommandJoystick(1);
     private final Shooter shooter = new Shooter(); // Assuming you have a Shooter subsystem
