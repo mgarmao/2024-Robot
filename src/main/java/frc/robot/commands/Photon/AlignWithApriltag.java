@@ -27,7 +27,7 @@
 //   public AlignWithApriltag(double setpoint) {
 //     m_setpoint = setpoint;
 //     addRequirements(photon);
-//     addRequirements(drivebase);
+//     addRequirements(m_drivetrain);
 //   }
 
 //   @Override
@@ -57,10 +57,10 @@
 //     driveLeft = 0.5-yawPID;
 //     driveRight = 0.5+yawPID;
 //     if((photon.getApriltagDistanceY(targetID)!=0)){
-//     //   m_drivetrain.tankDrive(driveLeft, driveRight);
+//       m_drivetrain.tankDrive(driveLeft, driveRight);
 //     }
 //     else{
-//     //   m_drivetrain.tankDrive(0.4, 0.4);
+//       m_drivetrain.tankDrive(0.4, 0.4);
 //     }
     
 //     SmartDashboard.putBoolean("Drive Stage",true);
@@ -70,7 +70,7 @@
 
 //   @Override
 //   public void end(boolean interrupted) {
-//     // m_drivetrain.stop();
+//     m_drivetrain.stop();
 //   }
 
 //   @Override
