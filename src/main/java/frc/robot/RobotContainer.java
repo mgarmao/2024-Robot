@@ -16,6 +16,8 @@ import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteFieldDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.commands.swervedrive.drivebase.TeleopDrive;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
@@ -25,6 +27,8 @@ public class RobotContainer {
     private final CommandXboxController driverXbox = new CommandXboxController(Constants.CONTROLLER_OPERATOR);
     CommandJoystick driverController = new CommandJoystick(1);
     private final Shooter shooter = new Shooter(); // Assuming you have a Shooter subsystem
+    private final Climber climber = new Climber();
+    private final Intake intake = new Intake();
 
     public RobotContainer() {
         configureButtonBindings();
@@ -77,10 +81,18 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-      // Configure button bindings here
-      driverXbox.a().toggleOnTrue(shooter.fire());
-      driverXbox.button(1).onTrue((new InstantCommand(drivebase::zeroGyro)));
-      driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));
+        // Configure button bindings here
+        driverXbox.a().toggleOnTrue(shooter.fire());
+        driverXbox.b().toggleOnTrue(shooter.stop());   
+
+        driverXbox.leftBumper().toggleOnTrue(climber.runFoward());   
+        driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
+
+        driverXbox.rightTrigger().onTrue(intake.run());
+        driverXbox.rightTrigger().onFalse(intake.stop());
+
+        driverXbox.button(1).onTrue((new InstantCommand(drivebase::zeroGyro)));
+        driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));
     }
 
     private void configureDefaultCommands() {
