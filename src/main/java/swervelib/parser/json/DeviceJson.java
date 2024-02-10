@@ -18,14 +18,14 @@ import swervelib.imu.ADXRS450Swerve;
 import swervelib.imu.AnalogGyroSwerve;
 import swervelib.imu.NavXSwerve;
 import swervelib.imu.Pigeon2Swerve;
-import swervelib.imu.PigeonSwerve;
+// import swervelib.imu.PigeonSwerve;
 import swervelib.imu.SwerveIMU;
 import swervelib.motors.SparkFlexSwerve;
 import swervelib.motors.SparkMaxBrushedMotorSwerve;
 import swervelib.motors.SparkMaxSwerve;
 import swervelib.motors.SwerveMotor;
 import swervelib.motors.TalonFXSwerve;
-import swervelib.motors.TalonSRXSwerve;
+// import swervelib.motors.TalonSRXSwerve;
 import swervelib.telemetry.Alert;
 import swervelib.telemetry.Alert.AlertType;
 
@@ -149,8 +149,8 @@ public class DeviceJson
       case "navx_mxp_serial":
         serialCommsIssueWarning.set(true);
         return new NavXSwerve(Port.kMXP);
-      case "pigeon":
-        return new PigeonSwerve(id);
+      // case "pigeon":
+        // return new PigeonSwerve(id);
       case "pigeon2":
         return new Pigeon2Swerve(id, canbus != null ? canbus : "");
       default:

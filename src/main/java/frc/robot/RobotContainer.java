@@ -94,7 +94,7 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         // return new ExampleCommand(m_exampleSubsystem);
-        return drivebase.getAutonomousCommand("New Path", true);
+        return drivebase.getAutonomousCommand("SamplePath", true);
     }
 
     public void setDriveMode()
