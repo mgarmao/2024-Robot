@@ -28,7 +28,12 @@ public final class Constants
 
   public static final int Intake1 = 10;
   public static final int Intake2 = 10;
+  public static final int rotator = 10;
   public static final int IntakeAmpLimit = 40;
+  public static final int RotatorAmpLimit = 40;
+
+  public static final int rotatorUpperLimit = 40;
+  public static final int rotatorLowerLimit = 0;
   
   public static final int Climber1 = 10;
   public static final int Climber2 = 10;
@@ -36,6 +41,10 @@ public final class Constants
 
   public static int requestedPipeline = 0;
   public static int startingApriltag = 0;
+
+  public static int ClimberUpperLimit = 0;
+  public static int ClimberLowerLimit = 100;
+
 
   public static final class Auton
   {

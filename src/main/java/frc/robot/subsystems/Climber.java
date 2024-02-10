@@ -29,6 +29,11 @@ public class Climber extends SubsystemBase {
         motor.setSmartCurrentLimit(Constants.ClimberAmpLimit);
         motor2.setSmartCurrentLimit(Constants.ClimberAmpLimit);
 
+        motor.setSoftLimit(null, Constants.ClimberUpperLimit);
+        motor.setSoftLimit(null, Constants.ClimberUpperLimit);
+        motor2.setSoftLimit(null, Constants.ClimberLowerLimit);
+        motor2.setSoftLimit(null, Constants.ClimberLowerLimit);
+
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
          * will effectively disconnect all motor wires. This allows the motor to spin down at 

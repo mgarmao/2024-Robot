@@ -15,19 +15,25 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
     private CANSparkMax motor;
     private CANSparkMax motor2;
+    private CANSparkMax rotator;
 
     public Intake() {
         /** Create a new object to control the SPARK MAX motor controllers. */
         motor = new CANSparkMax(Constants.Intake1, MotorType.kBrushless);
         motor2 = new CANSparkMax(Constants.Intake2, MotorType.kBrushless);
+        rotator = new CANSparkMax(Constants.rotator, MotorType.kBrushless);
+
         /**
          * Restore motor controller parameters to factory default until the next controller 
          * reboot.
          */
         motor.restoreFactoryDefaults();
         motor2.restoreFactoryDefaults();
+        rotator.restoreFactoryDefaults();
+        
         motor.setSmartCurrentLimit(Constants.IntakeAmpLimit);
         motor2.setSmartCurrentLimit(Constants.IntakeAmpLimit);
+        rotator.setSmartCurrentLimit(Constants.RotatorAmpLimit);
 
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
@@ -36,6 +42,10 @@ public class Intake extends SubsystemBase {
          */
         motor.setIdleMode(IdleMode.kCoast);
         motor2.setIdleMode(IdleMode.kCoast);
+        rotator.setIdleMode(IdleMode.kCoast);
+
+        rotator.setSoftLimit(Constants.rotatorUpperLimit);
+        rotator.setSoftLimit(Constants.rotatorLowerLimit);
         
         motor2.follow(motor);
     }
@@ -55,7 +65,20 @@ public class Intake extends SubsystemBase {
             motor.set(0);
         });
     }
-    
+
+    public Command extend(){
+        return runOnce(
+        ()->{
+            rotator.set(0.4);
+        });
+    }
+
+    public Command retract(){
+        return runOnce(
+        ()->{
+            rotator.set(-0.4);
+        });
+    }
 
     /** This method will be called once per scheduler run. */
     @Override
