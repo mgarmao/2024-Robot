@@ -5,6 +5,8 @@
 
 // angle conversion factor 53.3333333333
 package frc.robot;
+import com.pathplanner.lib.util.PIDConstants;
+
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
 // import swervelib.math.Matter;
@@ -61,6 +63,11 @@ public final class Constants
   {
     // Hold time on motor brakes when disabled
     public static final double WHEEL_LOCK_TIME = 10; // seconds
+  }
+
+  public static final class AutonConstants{
+    public static final PIDConstants TRANSLATION_PID = new PIDConstants(0.7, 0, 0);
+    public static final PIDConstants ANGLE_PID   = new PIDConstants(0.4, 0, 0.01);
   }
 
   public static class OperatorConstants
