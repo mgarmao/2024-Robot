@@ -26,17 +26,17 @@ public final class Constants
   public static final int Shooter2 = 10;
   public static final int ShooterAmpLimit = 40;
 
-  public static final int Intake1 = 10;
-  public static final int Intake2 = 10;
-  public static final int rotator = 10;
+  public static final int Intake1 = 11;
+  public static final int Intake2 = 12;
+  public static final int rotator = 13;
   public static final int IntakeAmpLimit = 40;
   public static final int RotatorAmpLimit = 40;
 
   public static final int rotatorUpperLimit = 40;
   public static final int rotatorLowerLimit = 0;
   
-  public static final int Climber1 = 10;
-  public static final int Climber2 = 10;
+  public static final int Climber1 = 14;
+  public static final int Climber2 = 15;
   public static final int ClimberAmpLimit = 10;
 
   public static int requestedPipeline = 0;

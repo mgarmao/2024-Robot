@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants;
 
@@ -29,10 +30,11 @@ public class Climber extends SubsystemBase {
         motor.setSmartCurrentLimit(Constants.ClimberAmpLimit);
         motor2.setSmartCurrentLimit(Constants.ClimberAmpLimit);
 
-        motor.setSoftLimit(null, Constants.ClimberUpperLimit);
-        motor.setSoftLimit(null, Constants.ClimberUpperLimit);
-        motor2.setSoftLimit(null, Constants.ClimberLowerLimit);
-        motor2.setSoftLimit(null, Constants.ClimberLowerLimit);
+        motor.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberUpperLimit);
+        motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberLowerLimit);
+
+        motor2.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberUpperLimit);
+        motor2.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberLowerLimit);
 
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 

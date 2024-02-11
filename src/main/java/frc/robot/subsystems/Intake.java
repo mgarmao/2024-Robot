@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants;
 
@@ -44,8 +45,8 @@ public class Intake extends SubsystemBase {
         motor2.setIdleMode(IdleMode.kCoast);
         rotator.setIdleMode(IdleMode.kCoast);
 
-        rotator.setSoftLimit(Constants.rotatorUpperLimit);
-        rotator.setSoftLimit(Constants.rotatorLowerLimit);
+        rotator.setSoftLimit(SoftLimitDirection.kForward, Constants.rotatorUpperLimit);
+        rotator.setSoftLimit(SoftLimitDirection.kReverse,Constants.rotatorLowerLimit);
         
         motor2.follow(motor);
     }
