@@ -51,14 +51,14 @@ public class Climber extends SubsystemBase {
     public Command runFoward() {
         return runOnce(
         ()->{
-            motor.set(1);
+            motor.set(0.4);
         });
     }
 
     public Command runBackwards() {
         return runOnce(
         ()->{
-            motor.set(1);
+            motor.set(-0.4);
         });
     }
 

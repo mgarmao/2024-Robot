@@ -83,8 +83,8 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         // Configure button bindings here
-        driverXbox.a().toggleOnTrue(shooter.fire());
-        driverXbox.b().toggleOnTrue(shooter.stop());   
+        driverXbox.rightTrigger().toggleOnTrue(shooter.fire());
+        driverXbox.rightTrigger().toggleOnFalse(shooter.stop());   
 
         driverXbox.leftBumper().toggleOnTrue(climber.runFoward());   
         driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
