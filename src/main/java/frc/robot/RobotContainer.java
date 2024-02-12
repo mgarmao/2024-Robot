@@ -1,16 +1,21 @@
 package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.Autonomous.BasicAuto;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteFieldDrive;
+import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.commands.swervedrive.drivebase.TeleopDrive;
 import frc.robot.subsystems.Climber;
@@ -21,17 +26,24 @@ import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 
 public class RobotContainer {
-    public final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve"));
+    public SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve"));
     private final CommandXboxController driverXbox = new CommandXboxController(Constants.CONTROLLER_OPERATOR);
     private final Joystick leftStick = new Joystick(1);
     private final Joystick rightStick = new Joystick(2);
+    private Translation2d targetPosition = new Translation2d(1,0);
 
     private final Shooter shooter = new Shooter(); // Assuming you have a Shooter subsystem
     private final Climber climber = new Climber();
     private final Intake intake = new Intake();
-    public static final Photon photon = new Photon();   
+    public static final Photon photon = new Photon();
+    
+    private SendableChooser<Command> m_auto = new SendableChooser<>();
+    private final Command BasicAuto = new BasicAuto(drivebase);  
+
 
     public RobotContainer() {
+        m_auto.setDefaultOption("BasicAuto", BasicAuto);
+
         configureButtonBindings();
         configureDefaultCommands();
 
@@ -104,7 +116,7 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         // return new ExampleCommand(m_exampleSubsystem);
-        return drivebase.getAutonomousCommand("SamplePath", true);
+        return m_auto.getSelected();        
     }
 
     public void setDriveMode()

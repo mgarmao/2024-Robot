@@ -41,8 +41,8 @@ public class Climber extends SubsystemBase {
          * will effectively disconnect all motor wires. This allows the motor to spin down at 
          * its own rate. 
          */
-        motor.setIdleMode(IdleMode.kCoast);
-        motor2.setIdleMode(IdleMode.kCoast);
+        motor.setIdleMode(IdleMode.kBrake);
+        motor2.setIdleMode(IdleMode.kBrake);
         
         motor2.follow(motor);
     }
