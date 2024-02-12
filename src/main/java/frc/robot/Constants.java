@@ -49,7 +49,7 @@ public final class Constants
   public static int startingApriltag = 0;
 
   public static int ClimberUpperLimit = 0;
-  public static int ClimberLowerLimit = -140;
+  public static int ClimberLowerLimit = -285;
 
 
   public static final class Auton

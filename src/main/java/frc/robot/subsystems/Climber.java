@@ -36,6 +36,9 @@ public class Climber extends SubsystemBase {
         motor2.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberUpperLimit);
         motor2.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberLowerLimit);
 
+        motor.enableSoftLimit(SoftLimitDirection.kForward, true);
+        motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
+
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
          * will effectively disconnect all motor wires. This allows the motor to spin down at 
@@ -51,14 +54,14 @@ public class Climber extends SubsystemBase {
     public Command runFoward() {
         return runOnce(
         ()->{
-            motor.set(0.4);
+            motor.set(1);
         });
     }
 
     public Command runBackwards() {
         return runOnce(
         ()->{
-            motor.set(-0.4);
+            motor.set(-1);
         });
     }
 
