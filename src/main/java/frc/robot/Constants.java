@@ -48,7 +48,7 @@ public final class Constants
   public static int requestedPipeline = 0;
   public static int startingApriltag = 0;
 
-  public static int ClimberUpperLimit = 140;
+  public static int ClimberUpperLimit = 0;
   public static int ClimberLowerLimit = -140;
 
 
