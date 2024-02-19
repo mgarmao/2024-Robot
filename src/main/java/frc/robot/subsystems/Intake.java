@@ -15,26 +15,27 @@ import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
     private CANSparkMax motor;
-    private CANSparkMax motor2;
-    private CANSparkMax rotator;
+    private CANSparkMax rotator1;
+    private CANSparkMax rotator2;
 
     public Intake() {
         /** Create a new object to control the SPARK MAX motor controllers. */
-        motor = new CANSparkMax(Constants.Intake1, MotorType.kBrushless);
-        motor2 = new CANSparkMax(Constants.Intake2, MotorType.kBrushless);
-        rotator = new CANSparkMax(Constants.rotator, MotorType.kBrushless);
+        motor = new CANSparkMax(Constants.Intake, MotorType.kBrushless);
+        rotator1 = new CANSparkMax(Constants.rotator1, MotorType.kBrushless);
+        rotator2 = new CANSparkMax(Constants.rotator2, MotorType.kBrushless);
 
         /**
          * Restore motor controller parameters to factory default until the next controller 
          * reboot.
          */
         motor.restoreFactoryDefaults();
-        motor2.restoreFactoryDefaults();
-        rotator.restoreFactoryDefaults();
+        rotator1.restoreFactoryDefaults();
+        rotator2.restoreFactoryDefaults();
+
         
         motor.setSmartCurrentLimit(Constants.IntakeAmpLimit);
-        motor2.setSmartCurrentLimit(Constants.IntakeAmpLimit);
-        rotator.setSmartCurrentLimit(Constants.RotatorAmpLimit);
+        rotator1.setSmartCurrentLimit(Constants.RotatorAmpLimit);
+        rotator2.setSmartCurrentLimit(Constants.RotatorAmpLimit);
 
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
@@ -42,13 +43,21 @@ public class Intake extends SubsystemBase {
          * its own rate. 
          */
         motor.setIdleMode(IdleMode.kCoast);
-        motor2.setIdleMode(IdleMode.kCoast);
-        rotator.setIdleMode(IdleMode.kCoast);
+        rotator1.setIdleMode(IdleMode.kBrake);
+        rotator2.setIdleMode(IdleMode.kBrake);
 
-        rotator.setSoftLimit(SoftLimitDirection.kForward, Constants.rotatorUpperLimit);
-        rotator.setSoftLimit(SoftLimitDirection.kReverse,Constants.rotatorLowerLimit);
+        rotator1.setSoftLimit(SoftLimitDirection.kForward, Constants.rotatorUpperLimit);
+        rotator2.setSoftLimit(SoftLimitDirection.kForward, Constants.rotatorUpperLimit);
+        rotator1.setSoftLimit(SoftLimitDirection.kReverse,Constants.rotatorLowerLimit);
+        rotator2.setSoftLimit(SoftLimitDirection.kReverse,Constants.rotatorLowerLimit);
         
-        motor2.follow(motor);
+        rotator1.enableSoftLimit(SoftLimitDirection.kReverse, false);
+        rotator1.enableSoftLimit(SoftLimitDirection.kForward, false);
+
+        rotator2.enableSoftLimit(SoftLimitDirection.kForward, false);
+        rotator2.enableSoftLimit(SoftLimitDirection.kReverse, false);
+
+        rotator2.follow(rotator1);
     }
 
     /** Retrieve cargo for transportation. */
@@ -70,17 +79,23 @@ public class Intake extends SubsystemBase {
     public Command extend(){
         return runOnce(
         ()->{
-            rotator.set(0.4);
+            rotator1.set(0.4);
         });
     }
 
     public Command retract(){
         return runOnce(
         ()->{
-            rotator.set(-0.4);
+            rotator1.set(-0.4);
         });
     }
 
+    public Command stopExtendRetract(){
+        return runOnce(
+        ()->{
+            rotator1.set(0);  
+        });
+    }
     /** This method will be called once per scheduler run. */
     @Override
     public void periodic() {

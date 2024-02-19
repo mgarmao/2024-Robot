@@ -15,7 +15,6 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autonomous.BasicAuto;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteFieldDrive;
-import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.commands.swervedrive.drivebase.TeleopDrive;
 import frc.robot.subsystems.Climber;
@@ -32,9 +31,9 @@ public class RobotContainer {
     private final Joystick rightStick = new Joystick(2);
     private Translation2d targetPosition = new Translation2d(1,0);
 
-    private final Shooter shooter = new Shooter(); // Assuming you have a Shooter subsystem
-    private final Climber climber = new Climber();
-    private final Intake intake = new Intake();
+    public static final Shooter shooter = new Shooter(); 
+    public static final Climber climber = new Climber();
+    public static final Intake intake = new Intake();
     public static final Photon photon = new Photon();
     
     private SendableChooser<Command> m_auto = new SendableChooser<>();
@@ -95,14 +94,20 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         // Configure button bindings here
-        driverXbox.rightTrigger().toggleOnTrue(shooter.fire());
+        
+        driverXbox.rightTrigger().toggleOnTrue(shooter.fire(1));
         driverXbox.rightTrigger().toggleOnFalse(shooter.stop());   
+
+        driverXbox.leftTrigger().onTrue(shooter.fire(-1));
+        driverXbox.leftTrigger().onFalse(shooter.stop());
 
         driverXbox.leftBumper().toggleOnTrue(climber.runFoward());   
         driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
 
-        driverXbox.rightTrigger().onTrue(intake.run());
-        driverXbox.rightTrigger().onFalse(intake.stop());
+        driverXbox.povUp().onTrue(intake.retract());
+        driverXbox.povDown().onTrue(intake.extend());
+        driverXbox.povUp().toggleOnFalse(intake.stopExtendRetract()); 
+        driverXbox.povDown().toggleOnFalse(intake.stopExtendRetract()); 
 
         driverXbox.button(1).onTrue((new InstantCommand(drivebase::zeroGyro)));
         driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));

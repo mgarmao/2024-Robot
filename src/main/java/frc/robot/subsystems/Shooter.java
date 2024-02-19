@@ -4,10 +4,17 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
+
+import java.util.Map;
+
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants;
@@ -37,14 +44,17 @@ public class Shooter extends SubsystemBase {
         motor.setIdleMode(IdleMode.kCoast);
         motor2.setIdleMode(IdleMode.kCoast);
         
-        motor2.follow(motor);
+        motor.setInverted(true);
+        motor2.follow(motor,true);
     }
 
     /** Retrieve cargo for transportation. */
-    public Command fire() {
+    public Command fire(double speed) {
         return runOnce(
         ()->{
-            motor.set(1);
+            
+            motor.set(speed);
+
         });
     }
 
