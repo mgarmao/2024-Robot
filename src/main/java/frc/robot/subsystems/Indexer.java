@@ -13,7 +13,6 @@ import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
     private CANSparkMax motor;
-    private CANSparkMax motor2;
 
     public Indexer() {
         /** Create a new object to control the SPARK MAX motor controllers. */
