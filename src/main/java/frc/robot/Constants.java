@@ -46,6 +46,9 @@ public final class Constants
   public static final int Climber2 = 15;
   public static final int ClimberAmpLimit = 10;
 
+  public static final int IndexMotor = 16;
+  public static final int IndexerAmpLimit = 16;
+
   public static int requestedPipeline = 0;
   public static int startingApriltag = 0;
 

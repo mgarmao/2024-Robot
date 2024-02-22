@@ -3,32 +3,27 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
-
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.Constants;
 
-public class Shooter extends SubsystemBase {
+public class Indexer extends SubsystemBase {
     private CANSparkMax motor;
     private CANSparkMax motor2;
 
-    public Shooter() {
+    public Indexer() {
         /** Create a new object to control the SPARK MAX motor controllers. */
-        motor = new CANSparkMax(Constants.Shooter1, MotorType.kBrushless);
-        motor2 = new CANSparkMax(Constants.Shooter2, MotorType.kBrushless);
+        motor = new CANSparkMax(Constants.IndexMotor, MotorType.kBrushless);
         /**
          * Restore motor controller parameters to factory default until the next controller 
          * reboot.
          */
         motor.restoreFactoryDefaults();
-        motor2.restoreFactoryDefaults();
-        motor.setSmartCurrentLimit(Constants.ShooterAmpLimit);
-        motor2.setSmartCurrentLimit(Constants.ShooterAmpLimit);
+        motor.setSmartCurrentLimit(Constants.IndexerAmpLimit);
 
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
@@ -36,14 +31,12 @@ public class Shooter extends SubsystemBase {
          * its own rate. 
          */
         motor.setIdleMode(IdleMode.kCoast);
-        motor2.setIdleMode(IdleMode.kCoast);
         
-        motor.setInverted(true);
-        motor2.follow(motor,true);
+        motor.setInverted(false);
     }
 
     /** Retrieve cargo for transportation. */
-    public Command fire(double speed) {
+    public Command run(double speed) {
         return runOnce(
         ()->{
             
