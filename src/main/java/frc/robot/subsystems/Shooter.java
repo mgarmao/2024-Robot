@@ -16,7 +16,7 @@ import com.revrobotics.CANSparkMax;
 import java.util.Map;
 
 import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {

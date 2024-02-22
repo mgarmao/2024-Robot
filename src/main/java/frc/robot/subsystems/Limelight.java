@@ -32,3 +32,5 @@ public class Limelight extends SubsystemBase{
         SmartDashboard.putNumber("LimelightArea", area);    
     }
 }
+
+// NetworkTableInstance.getDefault().getTable(“limelight”).getEntry(“stream”).setNumber(2);
