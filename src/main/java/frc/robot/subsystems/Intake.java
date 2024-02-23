@@ -68,6 +68,13 @@ public class Intake extends SubsystemBase {
         });
     }
 
+    public Command reverse() {
+        return runOnce(
+        ()->{
+            motor.set(-1);
+        });
+    }
+
     /** Eject cargo from the robot. */
     public Command stop() {
         return runOnce(

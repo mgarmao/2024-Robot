@@ -20,6 +20,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Photon;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 
@@ -35,6 +36,7 @@ public class RobotContainer {
     public static final Intake intake = new Intake();
     public static final Photon photon = new Photon();
     public static final Limelight limelight = new Limelight();
+    public static final Indexer indexer =  new Indexer(); 
     
     private SendableChooser<Command> m_auto = new SendableChooser<>();
     private final Command BasicAuto = new BasicAuto(drivebase);  
@@ -93,24 +95,29 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        // Configure button bindings here
+        driverXbox.a().onTrue((new InstantCommand(drivebase::zeroGyro)));
         
-        driverXbox.rightTrigger().toggleOnTrue(shooter.fire(1));
-        driverXbox.rightTrigger().toggleOnFalse(shooter.stop());   
+        driverXbox.rightTrigger().onTrue(shooter.fire(1)).toggleOnFalse(shooter.stop());   
+        driverXbox.rightTrigger().toggleOnTrue(indexer.run(1)).toggleOnFalse(indexer.stop());
 
-        driverXbox.leftTrigger().onTrue(shooter.fire(-1));
-        driverXbox.leftTrigger().onFalse(shooter.stop());
+        driverXbox.leftTrigger().onTrue(shooter.fire(-1)).toggleOnFalse(shooter.stop());
+        driverXbox.leftTrigger().toggleOnTrue(indexer.run(-0.7)).toggleOnFalse(indexer.stop());
 
         driverXbox.leftBumper().toggleOnTrue(climber.runFoward());   
         driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
 
-        driverXbox.povUp().onTrue(intake.retract());
-        driverXbox.povDown().onTrue(intake.extend());
-        driverXbox.povUp().toggleOnFalse(intake.stopExtendRetract()); 
-        driverXbox.povDown().toggleOnFalse(intake.stopExtendRetract()); 
+        driverXbox.povUp().onTrue(intake.retract()).toggleOnFalse(intake.stopExtendRetract()); 
+        driverXbox.povDown().onTrue(intake.extend()).toggleOnFalse(intake.stopExtendRetract()); 
 
-        driverXbox.button(1).onTrue((new InstantCommand(drivebase::zeroGyro)));
-        driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));
+        driverXbox.x().toggleOnTrue(intake.run()).toggleOnFalse(intake.stop());
+        driverXbox.x().onTrue(indexer.run(0.25)).onFalse(indexer.stop());
+
+        driverXbox.b().toggleOnTrue(intake.reverse()).toggleOnFalse(intake.stop());
+
+
+        driverXbox.y().onTrue((shooter.fire(1))).onFalse(shooter.stop());
+        
+        // driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));
     }
 
     private void configureDefaultCommands() {

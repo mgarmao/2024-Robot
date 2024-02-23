@@ -39,7 +39,7 @@ public class Shooter extends SubsystemBase {
         motor2.setIdleMode(IdleMode.kCoast);
         
         motor.setInverted(true);
-        motor2.follow(motor,true);
+        motor.setInverted(true);
     }
 
     /** Retrieve cargo for transportation. */
@@ -48,7 +48,7 @@ public class Shooter extends SubsystemBase {
         ()->{
             
             motor.set(speed);
-
+            motor2.set(speed);
         });
     }
 
@@ -57,6 +57,7 @@ public class Shooter extends SubsystemBase {
         return runOnce(
         ()->{
             motor.set(0);
+            motor2.set(0);
         });
     }
     
