@@ -47,7 +47,8 @@ public class Climber extends SubsystemBase {
         motor.setIdleMode(IdleMode.kBrake);
         motor2.setIdleMode(IdleMode.kBrake);
         
-        motor2.follow(motor);
+        motor.setInverted(false);
+        motor2.setInverted(true);
     }
 
     /** Retrieve cargo for transportation. */
@@ -55,6 +56,7 @@ public class Climber extends SubsystemBase {
         return runOnce(
         ()->{
             motor.set(1);
+            motor2.set(1);
         });
     }
 
@@ -62,6 +64,7 @@ public class Climber extends SubsystemBase {
         return runOnce(
         ()->{
             motor.set(-1);
+            motor2.set(-1);
         });
     }
 
@@ -70,9 +73,23 @@ public class Climber extends SubsystemBase {
         return runOnce(
         ()->{
             motor.set(0);
+            motor2.set(0);
         });
     }
-    
+
+    public Command retractLeftClimber(double speed) {
+        return runOnce(
+        ()->{
+            motor.set(speed);
+        });
+    }
+
+    public Command retractRightClimber(double speed) {
+        return runOnce(
+        ()->{
+            motor2.set(speed);
+        });
+    }
 
     /** This method will be called once per scheduler run. */
     @Override

@@ -16,6 +16,7 @@ import frc.robot.commands.swervedrive.drivebase.AbsoluteFieldDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.commands.swervedrive.drivebase.TeleopDrive;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Gyroscope;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Photon;
@@ -37,6 +38,7 @@ public class RobotContainer {
     public static final Photon photon = new Photon();
     public static final Limelight limelight = new Limelight();
     public static final Indexer indexer =  new Indexer(); 
+    public static final Gyroscope gyroscope = new Gyroscope();
     
     private SendableChooser<Command> m_auto = new SendableChooser<>();
     private final Command BasicAuto = new BasicAuto(drivebase);  
