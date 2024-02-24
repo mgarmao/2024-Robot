@@ -5,33 +5,36 @@
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.DutyCycleOut;
+import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.hardware.core.CoreTalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.fasterxml.jackson.core.JsonParser.NumberType;
 import com.revrobotics.CANSparkMax;
+
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
-    private CANSparkMax motor;
+    // private final CANcoder motor_cc = new CANcoder(0);
+    private final TalonFX motor = new TalonFX(2);
+    private final DutyCycleOut m_dutycycle = new DutyCycleOut(0); 
 
     public Indexer() {
         /** Create a new object to control the SPARK MAX motor controllers. */
-        motor = new CANSparkMax(Constants.IndexMotor, MotorType.kBrushless);
-        /**
-         * Restore motor controller parameters to factory default until the next controller 
-         * reboot.
-         */
-        motor.restoreFactoryDefaults();
-        motor.setSmartCurrentLimit(Constants.IndexerAmpLimit);
+
+        motor.getConfigurator().apply(new TalonFXConfiguration());
+        motor.setNeutralMode(NeutralModeValue.Brake);
+        motor.setInverted(false);
 
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
          * will effectively disconnect all motor wires. This allows the motor to spin down at 
          * its own rate. 
          */
-        motor.setIdleMode(IdleMode.kCoast);
-        
-        motor.setInverted(false);
     }
 
     /** Retrieve cargo for transportation. */
@@ -40,6 +43,7 @@ public class Indexer extends SubsystemBase {
         ()->{
             
             motor.set(speed);
+
 
         });
     }

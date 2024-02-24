@@ -11,29 +11,39 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.DutyCycleOut;
+import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.hardware.core.CoreTalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.fasterxml.jackson.core.JsonParser.NumberType;
+
 import frc.robot.Constants;
 
+
 public class Intake extends SubsystemBase {
-    private CANSparkMax motor;
+    // private final CANcoder motor_cc = new CANcoder(0);
+    private final TalonFX motor = new TalonFX(1);
+    private final DutyCycleOut m_dutycycle = new DutyCycleOut(0);
+    
     private CANSparkMax rotator1;
     private CANSparkMax rotator2;
 
     public Intake() {
         /** Create a new object to control the SPARK MAX motor controllers. */
-        motor = new CANSparkMax(Constants.Intake, MotorType.kBrushless);
         rotator1 = new CANSparkMax(Constants.rotator1, MotorType.kBrushless);
         rotator2 = new CANSparkMax(Constants.rotator2, MotorType.kBrushless);
 
-        /**
-         * Restore motor controller parameters to factory default until the next controller 
-         * reboot.
-         */
-        motor.restoreFactoryDefaults();
+        motor.getConfigurator().apply(new TalonFXConfiguration());
+        motor.setNeutralMode(NeutralModeValue.Brake);
+        motor.setInverted(false);
+
         rotator1.restoreFactoryDefaults();
         rotator2.restoreFactoryDefaults();
 
+
         
-        motor.setSmartCurrentLimit(Constants.IntakeAmpLimit);
         rotator1.setSmartCurrentLimit(Constants.RotatorAmpLimit);
         rotator2.setSmartCurrentLimit(Constants.RotatorAmpLimit);
 
@@ -42,7 +52,6 @@ public class Intake extends SubsystemBase {
          * will effectively disconnect all motor wires. This allows the motor to spin down at 
          * its own rate. 
          */
-        motor.setIdleMode(IdleMode.kCoast);
         rotator1.setIdleMode(IdleMode.kBrake);
         rotator2.setIdleMode(IdleMode.kBrake);
 
@@ -79,7 +88,7 @@ public class Intake extends SubsystemBase {
     public Command stop() {
         return runOnce(
         ()->{
-            motor.set(0);
+            motor.stopMotor();
         });
     }
 

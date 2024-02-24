@@ -110,7 +110,7 @@ public class RobotContainer {
         driverXbox.povDown().onTrue(intake.extend()).toggleOnFalse(intake.stopExtendRetract()); 
 
         driverXbox.x().toggleOnTrue(intake.run()).toggleOnFalse(intake.stop());
-        driverXbox.x().onTrue(indexer.run(0.25)).onFalse(indexer.stop());
+        driverXbox.x().onTrue(indexer.run(0.08)).onFalse(indexer.stop());
 
         driverXbox.b().toggleOnTrue(intake.reverse()).toggleOnFalse(intake.stop());
 
