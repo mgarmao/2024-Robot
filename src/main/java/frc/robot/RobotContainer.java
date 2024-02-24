@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autonomous.BasicAuto;
+import frc.robot.commands.Climber.AutoClimb;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteFieldDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
@@ -118,6 +119,8 @@ public class RobotContainer {
 
 
         driverXbox.y().onTrue((shooter.fire(1))).onFalse(shooter.stop());
+
+        driverXbox.povRight().onTrue(new AutoClimb()).onFalse(climber.stop());
         
         // driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));
     }
