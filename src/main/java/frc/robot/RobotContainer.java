@@ -120,7 +120,7 @@ public class RobotContainer {
 
         driverXbox.y().onTrue((shooter.fire(1))).onFalse(shooter.stop());
 
-        driverXbox.povRight().onTrue(new AutoClimb()).onFalse(climber.stop());
+        driverXbox.povRight().onTrue(new AutoClimb(driverXbox)).onFalse(climber.stop());
         
         // driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));
     }

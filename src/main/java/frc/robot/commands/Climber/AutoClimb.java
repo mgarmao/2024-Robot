@@ -4,13 +4,10 @@
 
 package frc.robot.commands.Climber;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 import static frc.robot.RobotContainer.*;
 
@@ -18,7 +15,10 @@ public class AutoClimb extends CommandBase {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     int pipeline;
 
-    public AutoClimb() {
+    CommandXboxController controller;
+
+    public AutoClimb(CommandXboxController driverXbox) {
+        controller = driverXbox;
         addRequirements(climber);
         addRequirements(gyroscope);
     }
@@ -46,10 +46,17 @@ public class AutoClimb extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
+        
     }
 
     @Override
     public boolean isFinished() {
-        return true;
+        boolean isPressed = controller.povDownRight().getAsBoolean();
+        if(isPressed){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
