@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
@@ -44,22 +45,18 @@ public class Shooter extends SubsystemBase {
         motor.setIdleMode(IdleMode.kCoast);
         motor2.setIdleMode(IdleMode.kCoast);
         
-        motor.setInverted(true);
-        motor2.setInverted(false);
+        motor.setInverted(false);
+        motor2.setInverted(true);
         motor.burnFlash();
         motor2.burnFlash();
     }
 
-    /** Retrieve cargo for transportation. */
-    public Command fire(double speed) {
-        return runOnce(
-        ()->{
-            motor.set(speed);
-            motor2.set(speed);
-        });
+    public void fire(double speed) {
+        motor.set(speed);
+        motor2.set(speed);
+        
     }
 
-    /** Eject cargo from the robot. */
     public Command stop() {
         return runOnce(
         ()->{
@@ -68,6 +65,10 @@ public class Shooter extends SubsystemBase {
         });
     }
     
+
+    public double getRPM() {
+        return encoder.getVelocity();
+    }
 
     /** This method will be called once per scheduler run. */
     @Override

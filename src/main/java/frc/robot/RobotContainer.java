@@ -3,13 +3,19 @@ package frc.robot;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.SmartFire;
 import frc.robot.commands.Autonomous.BasicAuto;
 import frc.robot.commands.Climber.AutoClimb;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
@@ -42,7 +48,8 @@ public class RobotContainer {
     public static final Gyroscope gyroscope = new Gyroscope();
     
     private SendableChooser<Command> m_auto = new SendableChooser<>();
-    private final Command BasicAuto = new BasicAuto(drivebase);  
+    private final Command BasicAuto = new BasicAuto(drivebase); 
+    private final Command SmartFire = new SmartFire(shooter);   
 
 
     public RobotContainer() {
@@ -100,28 +107,27 @@ public class RobotContainer {
     private void configureButtonBindings() {
         driverXbox.a().onTrue((new InstantCommand(drivebase::zeroGyro)));
         
-        driverXbox.rightTrigger().onTrue(shooter.fire(1)).toggleOnFalse(shooter.stop());   
-        driverXbox.rightTrigger().toggleOnTrue(indexer.run(1)).toggleOnFalse(indexer.stop());
+        driverXbox.rightBumper().onTrue(SmartFire.withTimeout(4));
+        // driverXbox.rightTrigger().toggleOnTrue(indexer.run(1)).toggleOnFalse(indexer.stop());
 
-        driverXbox.leftTrigger().onTrue(shooter.fire(-1)).toggleOnFalse(shooter.stop());
+        // driverXbox.leftTrigger().onTrue(shooter.fire(-1)).toggleOnFalse(shooter.stop());
         driverXbox.leftTrigger().toggleOnTrue(indexer.run(-0.7)).toggleOnFalse(indexer.stop());
 
         driverXbox.leftBumper().toggleOnTrue(climber.runFoward());   
-        driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
+        // driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
 
         driverXbox.povUp().onTrue(intake.retract()).toggleOnFalse(intake.stopExtendRetract()); 
         driverXbox.povDown().onTrue(intake.extend()).toggleOnFalse(intake.stopExtendRetract()); 
 
         driverXbox.x().toggleOnTrue(intake.run()).toggleOnFalse(intake.stop());
-        driverXbox.x().onTrue(indexer.run(0.12)).onFalse(indexer.stop());
+        driverXbox.x().onTrue(indexer.run(0.07)).onFalse(indexer.stop());
 
         driverXbox.b().toggleOnTrue(intake.reverse()).toggleOnFalse(intake.stop());
 
 
-        driverXbox.y().onTrue((shooter.fire(1))).onFalse(shooter.stop());
-
-        driverXbox.povRight().onTrue(new AutoClimb(driverXbox)).onFalse(climber.stop());
+        driverXbox.y().onTrue(new InstantCommand(() -> shooter.fire(1.0))).onFalse(new InstantCommand(() -> shooter.stop()));
         
+        driverXbox.povRight().onTrue(new AutoClimb(driverXbox)).onFalse(climber.stop());
         // driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));
     }
 

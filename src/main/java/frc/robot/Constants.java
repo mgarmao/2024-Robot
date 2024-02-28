@@ -38,8 +38,8 @@ public final class Constants
   public static final int rotatorUpperLimit = 40;
   public static final int rotatorLowerLimit = 0;
   
-  public static final int Climber1 = 12;
-  public static final int Climber2 = 13;
+  public static final int Climber1 = 13;
+  public static final int Climber2 = 14;
   public static final int ClimberAmpLimit = 10;
 
   public static final int IndexMotor = 14;
