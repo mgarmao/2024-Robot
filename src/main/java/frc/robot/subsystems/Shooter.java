@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-
+import edu.wpi.first.math.controller.PIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
@@ -21,7 +21,11 @@ public class Shooter extends SubsystemBase {
     private RelativeEncoder encoder;
     private RelativeEncoder encoder2;
 
+    private PIDController PIDController;
+
     public Shooter() {
+
+        PIDController = new PIDController(0.2, 0.1, 0.4);
         /** Create a new object to control the SPARK MAX motor controllers. */
         motor = new CANSparkMax(Constants.Shooter1, MotorType.kBrushless);
         motor2 = new CANSparkMax(Constants.Shooter2, MotorType.kBrushless);
@@ -57,6 +61,18 @@ public class Shooter extends SubsystemBase {
         
     }
 
+    public void setRPM (double desiredRPM){
+        PIDController.setSetpoint(desiredRPM);
+        double motorPIDOutput = clamp(PIDController.calculate(motor.getEncoder().getVelocity(),desiredRPM),-1,1);
+        double motor2PIDOutput = clamp(PIDController.calculate(motor2.getEncoder().getVelocity(),desiredRPM),-1,1);
+
+        SmartDashboard.putNumber("ShooterPID1", motorPIDOutput);
+        SmartDashboard.putNumber("ShooterPID2", motor2PIDOutput);
+        motor.set(motorPIDOutput);
+        motor2.set(motor2PIDOutput);
+    }
+
+
     public Command stop() {
         return runOnce(
         ()->{
@@ -77,4 +93,10 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("Shooter M2 RPM", encoder2.getVelocity());
     }
 
+
+    public static double clamp(double value, double min, double max) {
+        double clampedValue = Math.max(value, min);
+        clampedValue = Math.min(clampedValue, max);
+        return clampedValue;
+    }
 }
