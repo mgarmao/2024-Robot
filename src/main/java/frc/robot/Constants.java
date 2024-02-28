@@ -27,7 +27,7 @@ public final class Constants
 
   public static final int Shooter1 = 9;
   public static final int Shooter2 = 10;
-  public static final int ShooterAmpLimit = 50;
+  public static final int ShooterAmpLimit = 35;
 
   public static final int Intake = 13;
   public static final int rotator1 = 11;

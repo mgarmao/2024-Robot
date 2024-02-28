@@ -38,14 +38,8 @@ public class Indexer extends SubsystemBase {
     }
 
     /** Retrieve cargo for transportation. */
-    public Command run(double speed) {
-        return runOnce(
-        ()->{
-            
-            motor.set(speed);
-
-
-        });
+    public void run(double speed) {
+        motor.set(speed);
     }
 
     /** Eject cargo from the robot. */
