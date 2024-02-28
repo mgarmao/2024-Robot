@@ -30,14 +30,20 @@ public class Climber extends SubsystemBase {
         motor.setSmartCurrentLimit(Constants.ClimberAmpLimit);
         motor2.setSmartCurrentLimit(Constants.ClimberAmpLimit);
 
-        motor.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberUpperLimit);
-        motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberLowerLimit);
+        final float motorZero = (float)motor.getEncoder().getPosition();
+        final float motor2Zero = (float)motor2.getEncoder().getPosition();
 
-        motor2.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberUpperLimit);
-        motor2.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberLowerLimit);
+        motor.setSoftLimit(SoftLimitDirection.kForward, motorZero+(Constants.ClimberUpperLimit-Constants.ClimberLowerLimit));
+        motor.setSoftLimit(SoftLimitDirection.kReverse, motorZero);
+
+        motor.setSoftLimit(SoftLimitDirection.kForward, motor2Zero+(Constants.ClimberUpperLimit-Constants.ClimberLowerLimit));
+        motor2.setSoftLimit(SoftLimitDirection.kReverse, motor2Zero);
 
         motor.enableSoftLimit(SoftLimitDirection.kForward, true);
         motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
+
+        motor2.enableSoftLimit(SoftLimitDirection.kForward, true);
+        motor2.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
