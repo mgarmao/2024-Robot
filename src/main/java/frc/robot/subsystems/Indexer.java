@@ -42,6 +42,13 @@ public class Indexer extends SubsystemBase {
         motor.set(speed);
     }
 
+    public Command runCommand(double speed) {
+        return runOnce(
+        ()->{
+            motor.set(speed);
+        });
+    }
+
     /** Eject cargo from the robot. */
     public Command stop() {
         return runOnce(

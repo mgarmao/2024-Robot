@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.SmartFire;
+import frc.robot.commands.StopShooter;
 import frc.robot.commands.Autonomous.BasicAuto;
 import frc.robot.commands.Climber.AutoClimb;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
@@ -50,6 +51,7 @@ public class RobotContainer {
     private SendableChooser<Command> m_auto = new SendableChooser<>();
     private final Command BasicAuto = new BasicAuto(drivebase); 
     private final Command SmartFire = new SmartFire(shooter,indexer);   
+    private final Command StopShooter = new StopShooter(shooter);   
 
 
     public RobotContainer() {
@@ -107,7 +109,7 @@ public class RobotContainer {
     private void configureButtonBindings() {
         driverXbox.a().onTrue((new InstantCommand(drivebase::zeroGyro)));
         
-        driverXbox.rightTrigger().onTrue(SmartFire).onFalse(SmartFire);
+        driverXbox.rightTrigger().onTrue(SmartFire).onFalse(StopShooter);
         // driverXbox.rightTrigger().toggleOnTrue(indexer.run(1)).toggleOnFalse(indexer.stop());
 
         // driverXbox.leftTrigger().onTrue(shooter.fire(-1)).toggleOnFalse(shooter.stop());
@@ -116,10 +118,10 @@ public class RobotContainer {
         driverXbox.leftBumper().toggleOnTrue(climber.runFoward());   
         // driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
 
-        driverXbox.povUp().onTrue(intake.retract()).toggleOnFalse(intake.stopExtendRetract()); 
-        driverXbox.povDown().onTrue(intake.extend()).toggleOnFalse(intake.stopExtendRetract()); 
+        driverXbox.povUp().onTrue(new InstantCommand(()->intake.retract())).toggleOnFalse(new InstantCommand(()->intake.stopExtendRetract())); 
+        driverXbox.povDown().onTrue(new InstantCommand(()->intake.extend())).toggleOnFalse(new InstantCommand(()->intake.stopExtendRetract())); 
 
-        driverXbox.x().toggleOnTrue(intake.run()).toggleOnFalse(intake.stop());
+        driverXbox.x().toggleOnTrue(new InstantCommand(()->intake.run())).toggleOnFalse(intake.stop());
         driverXbox.x().onTrue(new InstantCommand(()->indexer.run(0.07))).onFalse(indexer.stop());
 
         driverXbox.b().toggleOnTrue(intake.reverse()).toggleOnFalse(intake.stop());

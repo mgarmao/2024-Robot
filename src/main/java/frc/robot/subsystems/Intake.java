@@ -70,11 +70,8 @@ public class Intake extends SubsystemBase {
     }
 
     /** Retrieve cargo for transportation. */
-    public Command run() {
-        return runOnce(
-        ()->{
-            motor.set(1);
-        });
+    public void run() {
+        motor.set(1);
     }
 
     public Command reverse() {
@@ -92,25 +89,20 @@ public class Intake extends SubsystemBase {
         });
     }
 
-    public Command extend(){
-        return runOnce(
-        ()->{
-            rotator1.set(0.4);
-        });
+    public void extend(){
+        rotator1.set(0.4);
+    }
+    
+
+    public void retract(){
+        rotator1.set(-0.4);
+    
     }
 
-    public Command retract(){
-        return runOnce(
-        ()->{
-            rotator1.set(-0.4);
-        });
-    }
+    public void stopExtendRetract(){
 
-    public Command stopExtendRetract(){
-        return runOnce(
-        ()->{
-            rotator1.set(0);  
-        });
+        rotator1.set(0);  
+        
     }
     /** This method will be called once per scheduler run. */
     @Override

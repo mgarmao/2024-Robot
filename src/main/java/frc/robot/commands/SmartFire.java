@@ -41,7 +41,7 @@ public class SmartFire extends Command
   @Override
   public void execute()
   {
-    if((shooter.getRPM()>6200)&&!indexing){
+    if((shooter.getRPM()>6000)&&!indexing){
         indexer.run(0.4);
         timer.start();
         timerZero = timer.get();

@@ -51,6 +51,9 @@ public final class Constants
   public static int ClimberUpperLimit = 0;
   public static int ClimberLowerLimit = -285;
 
+  public static int RingPipeline = 0;
+  public static int ApriltagPipeline = 1;
+
 
   public static final class Auton
   {
