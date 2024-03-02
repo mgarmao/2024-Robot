@@ -6,6 +6,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Limelight extends SubsystemBase{
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
     public Limelight() {
         SmartDashboard.putBoolean("Limelight",true);
@@ -13,7 +14,6 @@ public class Limelight extends SubsystemBase{
 
     @Override
     public void periodic() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
         NetworkTableEntry tx = table.getEntry("tx");
         NetworkTableEntry ty = table.getEntry("ty");
@@ -28,6 +28,17 @@ public class Limelight extends SubsystemBase{
         SmartDashboard.putNumber("LimelightX", x);
         SmartDashboard.putNumber("LimelightY", y);
         SmartDashboard.putNumber("LimelightArea", area);    
+    }
+
+    public void ChangePipeline(int pipeline){
+        NetworkTableEntry pipelineEntry = table.getEntry("pipeline");
+    	pipelineEntry.setNumber(pipeline);
+    }
+
+    public double getX(){
+        NetworkTableEntry tx = table.getEntry("tx");
+        double x = tx.getDouble(0.0);
+        return x;
     }
 }
 
