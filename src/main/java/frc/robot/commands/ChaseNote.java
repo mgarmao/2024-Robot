@@ -25,7 +25,11 @@ public class ChaseNote extends Command
     private final Double vX;
     private double vY = 0;
     private double PID = 0; 
-    PIDController pid = new PIDController(0.1, 0.1, 0.2);
+    double kP = 0.005;
+    double kI = 0.0;
+    double kD = 0.002;
+
+    PIDController pid = new PIDController(kP, kI, kD);
 
     private final Double headingHorizontal, headingVertical;
     private boolean initRotation = false;
