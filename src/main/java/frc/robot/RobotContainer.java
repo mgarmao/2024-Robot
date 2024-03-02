@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.SmartFire;
 import frc.robot.commands.StopShooter;
 import frc.robot.commands.Autonomous.BasicAuto;
 import frc.robot.commands.Climber.AutoClimb;
+import frc.robot.commands.Shooter.SmartFire;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteFieldDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
@@ -35,7 +35,7 @@ import java.io.File;
 
 public class RobotContainer {
     public SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve"));
-    private final CommandXboxController driverXbox = new CommandXboxController(Constants.CONTROLLER_OPERATOR);
+    public final CommandXboxController driverXbox = new CommandXboxController(Constants.CONTROLLER_OPERATOR);
     private final Joystick leftStick = new Joystick(1);
     private final Joystick rightStick = new Joystick(2);
     private Translation2d targetPosition = new Translation2d(1,0);
@@ -50,7 +50,7 @@ public class RobotContainer {
     
     private SendableChooser<Command> m_auto = new SendableChooser<>();
     private final Command BasicAuto = new BasicAuto(drivebase); 
-    private final Command SmartFire = new SmartFire(shooter,indexer);   
+    private final Command SmartFire = new SmartFire(shooter,indexer,driverXbox);   
     private final Command StopShooter = new StopShooter(shooter);   
 
 
@@ -122,12 +122,12 @@ public class RobotContainer {
         driverXbox.povDown().onTrue(new InstantCommand(()->intake.extend())).toggleOnFalse(new InstantCommand(()->intake.stopExtendRetract())); 
 
         driverXbox.x().toggleOnTrue(new InstantCommand(()->intake.run())).toggleOnFalse(intake.stop());
-        driverXbox.x().onTrue(new InstantCommand(()->indexer.run(0.07))).onFalse(indexer.stop());
+        driverXbox.x().onTrue(new InstantCommand(()->indexer.run(0.15))).onFalse(indexer.stop());
 
         driverXbox.b().toggleOnTrue(intake.reverse()).toggleOnFalse(intake.stop());
 
 
-        driverXbox.y().onTrue(new InstantCommand(() -> shooter.fire(1.0))).onFalse(new InstantCommand(() -> shooter.stop()));
+        driverXbox.y().toggleOnTrue(new InstantCommand(() -> shooter.fire(1.0))).onFalse(new InstantCommand(() -> shooter.fire(0)));
         
         driverXbox.povRight().onTrue(new AutoClimb(driverXbox)).onFalse(climber.stop());
         // driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));

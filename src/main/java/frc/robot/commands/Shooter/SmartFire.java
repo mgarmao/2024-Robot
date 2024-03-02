@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.Shooter;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
@@ -6,6 +6,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 
@@ -18,11 +19,13 @@ public class SmartFire extends Command
     private double timerZero;
     private Timer timer;
     private boolean indexing;
+    private CommandXboxController XboxController;
 
-    public SmartFire(Shooter shooter, Indexer indexer)
+    public SmartFire(Shooter shooter, Indexer indexer,CommandXboxController XboxController)
     {
         this.shooter = shooter;
         this.indexer = indexer;
+        this.XboxController = XboxController;
         indexing = false;
         timer = new Timer();
         addRequirements(this.shooter);
@@ -56,14 +59,14 @@ public class SmartFire extends Command
   {
     SmartDashboard.putNumber("Timer", timer.get());
     SmartDashboard.putNumber("TimerZero", timerZero);
-    if((timer.get()-timerZero)>=1){
-        shooter.fire(0);
-        indexer.run(0);
-        indexing=false;
-        return true;
+    if((timer.get()-timerZero)>=1||!(XboxController.rightTrigger().getAsBoolean())){
+      shooter.fire(0);
+      indexer.run(0);
+      indexing=false;
+      return true;
     }
     else{
-        return false;
+      return false;
     }
   }
 

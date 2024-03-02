@@ -41,7 +41,7 @@ public class RunIntake extends Command
   public void execute()
   {
     intake.run();
-    indexer.run(0.3);
+    indexer.run(0.05);
   }
 
 

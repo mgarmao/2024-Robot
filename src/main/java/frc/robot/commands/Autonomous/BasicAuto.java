@@ -15,11 +15,13 @@ import java.io.File;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
-import frc.robot.commands.SmartFire;
+import frc.robot.RobotContainer;
 import frc.robot.commands.StopShooter;
 import frc.robot.commands.Intake.DropIntake;
 import frc.robot.commands.Intake.RunIntake;
 import frc.robot.commands.Intake.StopExtendRetract;
+import frc.robot.commands.Shooter.AutoSmartFire;
+import frc.robot.commands.Shooter.SmartFire;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
@@ -32,13 +34,13 @@ public class BasicAuto extends SequentialCommandGroup {
     public BasicAuto(SwerveSubsystem swerve) {
         addCommands(
             new DropIntake(intake).withTimeout(2),
-            new SmartFire(shooter, indexer).withTimeout(5),
+            new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopExtendRetract(intake),
             new StopShooter(shooter),
             new RunIntake(intake,indexer).withTimeout(1),
             new AutoAbsoluteDrive(swerve,0.5,0.0,0.0,0.0).withTimeout(4),
             new AutoAbsoluteDrive(swerve,-0.5,0.0,0.0,0.0).withTimeout(4),
-            new SmartFire(shooter, indexer).withTimeout(5),
+            new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter)
         );
   }
