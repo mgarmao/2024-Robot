@@ -4,17 +4,14 @@
 
 package frc.robot.commands.Limelight;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import static frc.robot.RobotContainer.*;
 
-public class ChangePipeline extends CommandBase {
+public class ChangePipeline extends Command {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     int pipeline;
 

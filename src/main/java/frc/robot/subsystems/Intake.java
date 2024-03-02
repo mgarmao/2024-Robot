@@ -13,11 +13,8 @@ import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.DutyCycleOut;
-import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.hardware.core.CoreTalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.fasterxml.jackson.core.JsonParser.NumberType;
 
 import frc.robot.Constants;
 

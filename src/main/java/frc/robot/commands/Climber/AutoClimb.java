@@ -6,12 +6,12 @@ package frc.robot.commands.Climber;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 import static frc.robot.RobotContainer.*;
 
-public class AutoClimb extends CommandBase {
+public class AutoClimb extends Command {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     int pipeline;
 
