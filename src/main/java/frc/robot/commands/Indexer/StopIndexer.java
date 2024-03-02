@@ -1,4 +1,4 @@
-package frc.robot.commands.Intake;
+package frc.robot.commands.Indexer;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
@@ -10,23 +10,16 @@ import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 
-public class RunIntake extends Command
+public class StopIndexer extends Command
 {
 
     private final Indexer indexer;
-    private final Intake intake;
 
-    private double timerZero;
-    private Timer timer;
-    private boolean indexing;
-
-    public RunIntake(Intake intake, Indexer indexer)
+    public StopIndexer(Indexer indexer)
     {
-        this.intake = intake;
-        this.indexer = indexer;
-        
-        addRequirements(this.intake);
-        addRequirements(this.indexer);
+      this.indexer = indexer;
+      
+      addRequirements(this.indexer);
     }
 
 
@@ -40,8 +33,7 @@ public class RunIntake extends Command
   @Override
   public void execute()
   {
-    intake.run();
-    indexer.run(0.1);
+    indexer.stop();
   }
 
 

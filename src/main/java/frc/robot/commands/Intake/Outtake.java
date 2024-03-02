@@ -10,23 +10,20 @@ import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 
-public class RunIntake extends Command
+public class Outtake extends Command
 {
 
     private final Indexer indexer;
     private final Intake intake;
 
-    private double timerZero;
-    private Timer timer;
-    private boolean indexing;
 
-    public RunIntake(Intake intake, Indexer indexer)
+    public Outtake(Intake intake, Indexer indexer)
     {
-        this.intake = intake;
-        this.indexer = indexer;
-        
-        addRequirements(this.intake);
-        addRequirements(this.indexer);
+      this.intake = intake;
+      this.indexer = indexer;
+      
+      addRequirements(this.intake);
+      addRequirements(this.indexer);
     }
 
 
@@ -40,8 +37,8 @@ public class RunIntake extends Command
   @Override
   public void execute()
   {
-    intake.run();
-    indexer.run(0.1);
+    indexer.run(-0.14);;
+    intake.set(-1);
   }
 
 

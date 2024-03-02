@@ -76,8 +76,7 @@ public class RobotContainer {
                                                                              MathUtil.applyDeadband(leftStick.getY(),
                                                                                                     OperatorConstants.LEFT_Y_DEADBAND),
                                                                          () -> MathUtil.applyDeadband(leftStick.getX(),
-                                             
-                                                                         OperatorConstants.LEFT_X_DEADBAND),
+                                                                                                      OperatorConstants.LEFT_X_DEADBAND),
                                                                          () -> leftStick.getRawAxis(2));
 
     AbsoluteDriveAdv closedAbsoluteDriveAdv = new AbsoluteDriveAdv(drivebase,

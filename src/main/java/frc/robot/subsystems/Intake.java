@@ -74,6 +74,10 @@ public class Intake extends SubsystemBase {
         motor.set(1);
     }
 
+    public void set(double speed) {
+        motor.set(speed);
+    }
+
     public Command reverse() {
         return runOnce(
         ()->{
