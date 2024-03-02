@@ -10,6 +10,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
 import static frc.robot.RobotContainer.limelight;
+import static frc.robot.RobotContainer.photon;
 
 import java.util.List;
 import swervelib.SwerveController;
@@ -49,13 +50,15 @@ public class ChaseNote extends Command
     public void initialize()
     {
         initRotation = true;
+        photon.setCamera(1);
+        photon.setPipline(0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute()
     {
-        PID = pid.calculate(limelight.getX(), 0);
+        PID = pid.calculate(photon.getYaw(), 0);
         Math.max(-1, Math.min(1, PID));
 
         vY = PID;

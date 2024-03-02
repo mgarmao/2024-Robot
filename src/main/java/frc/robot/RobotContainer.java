@@ -44,8 +44,8 @@ public class RobotContainer {
     public static final Shooter shooter = new Shooter(); 
     public static final Climber climber = new Climber();
     public static final Intake intake = new Intake();
-    public static final Photon photon = new Photon();
     public static final Limelight limelight = new Limelight();
+    public static final Photon photon = new Photon();
     public static final Indexer indexer =  new Indexer(); 
     public static final Gyroscope gyroscope = new Gyroscope();
     
@@ -142,8 +142,6 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        // return new ExampleCommand(m_exampleSubsystem);
         return m_auto.getSelected();        
     }
 
