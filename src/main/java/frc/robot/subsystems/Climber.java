@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -100,7 +103,8 @@ public class Climber extends SubsystemBase {
     /** This method will be called once per scheduler run. */
     @Override
     public void periodic() {
-        
+        SmartDashboard.putNumber("Left Climber Pos", motor.getEncoder().getPosition());
+        SmartDashboard.putNumber("Right Climber Pos", motor2.getEncoder().getPosition());
     }
 
 }

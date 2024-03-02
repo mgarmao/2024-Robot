@@ -119,7 +119,7 @@ public class RobotContainer {
         driverXbox.leftTrigger().toggleOnTrue(new InstantCommand(()->indexer.run(-0.7))).toggleOnFalse(indexer.stop());
 
         driverXbox.leftBumper().toggleOnTrue(climber.runFoward());   
-        // driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
+        driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
 
         driverXbox.povUp().onTrue(new InstantCommand(()->intake.retract())).toggleOnFalse(new InstantCommand(()->intake.stopExtendRetract())); 
         driverXbox.povDown().onTrue(new InstantCommand(()->intake.extend())).toggleOnFalse(new InstantCommand(()->intake.stopExtendRetract())); 

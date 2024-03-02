@@ -9,16 +9,16 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
 public class Photon extends SubsystemBase{
-    public PhotonCamera camera = new PhotonCamera("F-Camera");
+    public PhotonCamera fowardCamera = new PhotonCamera("F-Camera");
+    public PhotonCamera rearCamera = new PhotonCamera("B-Camera");
+    public PhotonCamera camera;
+
     // Angle between horizontal and the camera.
     final double CAMERA_PITCH_RADIANS = Units.degreesToRadians(0);    
 
     
-    
-
     int apriltagPipeline = 0;
     int conePipeline = 1;
     int cubePipeline = 2;
@@ -29,8 +29,17 @@ public class Photon extends SubsystemBase{
         SmartDashboard.putBoolean("Photon",true);
     }
     
+    public void setCamera(int camNum){
+        if(camNum==0){
+            camera = fowardCamera;
+        }
+        if(camNum==1){
+            camera = rearCamera;
+        }
+    }
+
     public void setPipline(int m_pipline){
-        Constants.requestedPipeline = m_pipline;
+        camera.setPipelineIndex(m_pipline);
     }
 
     public double getApriltagYaw(int ID){
@@ -169,28 +178,6 @@ public class Photon extends SubsystemBase{
         return h;
     }
     
-    public double getConeYaw(){
-        double yaw = 0;
-        var result = camera.getLatestResult();
-        boolean hasTargets = result.hasTargets(); 
-        if(hasTargets){
-            PhotonTrackedTarget target = result.getBestTarget();
-            yaw = target.getYaw();
-        }
-        return yaw;
-    }
-
-    public double getCubeYaw(){
-        // camera.setPipelineIndex(pipline);
-        double yaw = 0;
-        var result = camera.getLatestResult();
-        boolean hasTargets = result.hasTargets(); 
-        if(hasTargets){
-            PhotonTrackedTarget target = result.getBestTarget();
-            yaw = target.getYaw();
-        }
-        return yaw;
-    }
 
     public double getAngle(){
         var result = camera.getLatestResult();
@@ -214,14 +201,29 @@ public class Photon extends SubsystemBase{
         return hasTargets;
     }
 
-    public boolean coneHasTarget(){
-        var result = camera.getLatestResult();         
-        boolean hasTargets = result.hasTargets();        
-        return hasTargets;
+    public double getYaw(){
+        double yaw = 0;
+        var result = camera.getLatestResult();
+        boolean hasTargets = result.hasTargets(); 
+        if(hasTargets){
+            PhotonTrackedTarget target = result.getBestTarget();
+            yaw = target.getYaw();
+        }
+        return yaw;
+    }
+
+    public double getPitch(){
+        double pitch = 0;
+        var result = camera.getLatestResult();
+        boolean hasTargets = result.hasTargets(); 
+        if(hasTargets){
+            PhotonTrackedTarget target = result.getBestTarget();
+            pitch = target.getPitch();
+        }
+        return pitch;
     }
 
     @Override
     public void periodic() {
-        camera.setPipelineIndex(Constants.requestedPipeline);
     }
 }
