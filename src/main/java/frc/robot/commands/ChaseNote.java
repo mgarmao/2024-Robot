@@ -22,8 +22,8 @@ public class ChaseNote extends Command
 {
 
     private final SwerveSubsystem swerve;
-    private final Double vY;
-    private double vX = 0;
+    private final Double vX;
+    private double vY = 0;
     private double PID = 0; 
     PIDController pid = new PIDController(0.1, 0.1, 0.2);
 
@@ -31,10 +31,10 @@ public class ChaseNote extends Command
     private boolean initRotation = false;
 
  
-  public ChaseNote(SwerveSubsystem swerve, Double vY, Double headingHorizontal,Double headingVertical)
+  public ChaseNote(SwerveSubsystem swerve, Double vX, Double headingHorizontal,Double headingVertical)
     {
         this.swerve = swerve;
-        this.vY = vY;
+        this.vX = vX;
         this.headingHorizontal = headingHorizontal;
         this.headingVertical = headingVertical;
 
@@ -52,8 +52,9 @@ public class ChaseNote extends Command
     public void execute()
     {
         PID = pid.calculate(limelight.getX(), 0);
+        Math.max(-1, Math.min(1, PID));
 
-        vX = PID;
+        vY = PID;
 
         // Get the desired chassis speeds based on a 2 joystick module.
         ChassisSpeeds desiredSpeeds = swerve.getTargetSpeeds(vX, vY,headingHorizontal,headingVertical);
@@ -61,16 +62,17 @@ public class ChaseNote extends Command
         // Prevent Movement After Auto
         if(initRotation)
         {
-        if(headingHorizontal == 0 && headingVertical == 0)
-        {
-            // Get the curretHeading
-            Rotation2d firstLoopHeading = swerve.getHeading();
         
-            // Set the Current Heading to the desired Heading
-            desiredSpeeds = swerve.getTargetSpeeds(0, 0, firstLoopHeading.getSin(), firstLoopHeading.getCos());
-        }
-        //Dont Init Rotation Again
-        initRotation = false;
+            if(headingHorizontal == 0 && headingVertical == 0)
+            {
+                // Get the curretHeading
+                Rotation2d firstLoopHeading = swerve.getHeading();
+            
+                // Set the Current Heading to the desired Heading
+                desiredSpeeds = swerve.getTargetSpeeds(0, 0, firstLoopHeading.getSin(), firstLoopHeading.getCos());
+            }
+            //Dont Init Rotation Again
+            initRotation = false;
         }
 
         // Limit velocity to prevent tippy
