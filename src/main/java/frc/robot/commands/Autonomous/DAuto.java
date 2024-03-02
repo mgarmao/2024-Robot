@@ -32,18 +32,19 @@ public class DAuto extends SequentialCommandGroup {
             new RunIntake(intake,indexer).withTimeout(1),
             
             new ChaseNote(swerve, 0.3, -1.0, 0.0).withTimeout(1.5),
-            new AutoAbsoluteDrive(swerve, 0.0, 0.0, 0.0, 0.0),
-
-            new ShooterEjectNote(shooter,indexer),
-            new ChaseNote(swerve, 0.3, -1.0, 0.0).withTimeout(1.5),
-            new ShooterEjectNote(shooter,indexer),
-
-            new ShooterEjectNote(shooter,indexer),
-            new ChaseNote(swerve, 0.3, -1.0, 0.0).withTimeout(1.5),
+            new AutoAbsoluteDrive(swerve, 0.0, 0.0, 0.0, 0.0).withTimeout(1),
             new ShooterEjectNote(shooter,indexer),
             
-            new ShooterEjectNote(shooter,indexer),
             new ChaseNote(swerve, 0.3, -1.0, 0.0).withTimeout(1.5),
+            new AutoAbsoluteDrive(swerve, 0.0, 0.0, 0.0, 0.0).withTimeout(1),
+            new ShooterEjectNote(shooter,indexer),
+            
+            new ChaseNote(swerve, 0.3, -1.0, 0.0).withTimeout(1.5),
+            new AutoAbsoluteDrive(swerve, 0.0, 0.0, 0.0, 0.0).withTimeout(1),
+            new ShooterEjectNote(shooter,indexer),
+            
+            new ChaseNote(swerve, 0.3, -1.0, 0.0).withTimeout(1.5),
+            new AutoAbsoluteDrive(swerve, 0.0, 0.0, 0.0, 0.0).withTimeout(1),
             new ShooterEjectNote(shooter,indexer),
 
             new StopShooter(shooter)
