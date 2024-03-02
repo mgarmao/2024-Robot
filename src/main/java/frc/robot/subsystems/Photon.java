@@ -223,6 +223,12 @@ public class Photon extends SubsystemBase{
         return pitch;
     }
 
+    public boolean hasTarget(){
+        var result = camera.getLatestResult();
+        boolean hasTargets = result.hasTargets(); 
+        return hasTargets;
+    }
+
     @Override
     public void periodic() {
     }
