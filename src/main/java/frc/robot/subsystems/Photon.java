@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import static frc.robot.RobotContainer.photon;
+
 import java.util.List;
 
 import org.photonvision.PhotonCamera;
@@ -11,22 +13,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Photon extends SubsystemBase{
-    public PhotonCamera fowardCamera = new PhotonCamera("F-Camera");
-    public PhotonCamera rearCamera = new PhotonCamera("B-Camera");
+    public PhotonCamera fowardCamera = new PhotonCamera("cam0");
+    public PhotonCamera rearCamera = new PhotonCamera("cam1");
     public PhotonCamera camera;
 
     // Angle between horizontal and the camera.
     final double CAMERA_PITCH_RADIANS = Units.degreesToRadians(0);    
 
-    
-    int apriltagPipeline = 0;
-    int conePipeline = 1;
-    int cubePipeline = 2;
 
     // AprilTagFieldLayout aprilTagFieldLayout = new AprilTagFieldLayout(AprilTagFieldLayout.loadFromResource(AprilTagFields.k2022RapidReact.m_resourceFile));
 
     public Photon() {
         SmartDashboard.putBoolean("Photon",true);
+        camera = rearCamera;
     }
     
     public void setCamera(int camNum){
@@ -231,5 +230,6 @@ public class Photon extends SubsystemBase{
 
     @Override
     public void periodic() {
+        SmartDashboard.putNumber("PHOTON Yaw", getYaw());
     }
 }

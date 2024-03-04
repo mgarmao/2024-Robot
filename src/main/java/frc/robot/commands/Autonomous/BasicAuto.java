@@ -11,7 +11,7 @@ import static frc.robot.RobotContainer.shooter;
 import static frc.robot.RobotContainer.intake;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-
+import frc.robot.commands.ChaseNote;
 import frc.robot.commands.StopShooter;
 import frc.robot.commands.Intake.DropIntake;
 import frc.robot.commands.Intake.RaiseIntake;
@@ -26,18 +26,19 @@ import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 public class BasicAuto extends SequentialCommandGroup {
     public BasicAuto(SwerveSubsystem swerve) {
         addCommands(
-            new DropIntake(intake).withTimeout(2),
-            new AutoSmartFire(shooter, indexer).withTimeout(5),
-            new StopExtendRetract(intake),
-            new StopShooter(shooter),
-            new RunIntake(intake,indexer).withTimeout(1),
-            new AutoAbsoluteDrive(swerve,0.5,0.0,0.0,0.0).withTimeout(4),
-            new RaiseIntake(intake).withTimeout(0.3),
-            new DropIntake(intake).withTimeout(0.3),
-            new StopExtendRetract(intake).withTimeout(0.1),
-            new AutoAbsoluteDrive(swerve,-0.5,0.0,0.0,0.0).withTimeout(4),
-            new AutoSmartFire(shooter, indexer).withTimeout(5),
-            new StopShooter(shooter)
+            // new DropIntake(intake).withTimeout(2),
+            // new AutoSmartFire(shooter, indexer).withTimeout(5),
+            // new StopExtendRetract(intake),
+            // new StopShooter(shooter),
+            // new RunIntake(intake,indexer).withTimeout(1),
+            // new AutoAbsoluteDrive(swerve,0.5,0.0,0.0,0.0).withTimeout(4),
+            // new RaiseIntake(intake).withTimeout(0.3),
+            // new DropIntake(intake).withTimeout(0.3),
+            // new StopExtendRetract(intake).withTimeout(0.1),
+            // new AutoAbsoluteDrive(swerve,-0.5,0.0,0.0,0.0).withTimeout(4),
+            // new AutoSmartFire(shooter, indexer).withTimeout(5),
+            // new StopShooter(shooter)
+            new ChaseNote(swerve, 0.4, 0.0, 0.0)
         );
   }
 }

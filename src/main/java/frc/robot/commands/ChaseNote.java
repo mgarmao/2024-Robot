@@ -24,11 +24,11 @@ public class ChaseNote extends Command
 
     private final SwerveSubsystem swerve;
     private final Double vX;
-    private double vY = 0;
+    private double vY=0;
     private double PID = 0; 
-    double kP = 0.005;
+    double kP = 0.03;
     double kI = 0.0;
-    double kD = 0.002;
+    double kD = 0.02;
 
     PIDController pid = new PIDController(kP, kI, kD);
 
@@ -58,11 +58,13 @@ public class ChaseNote extends Command
     @Override
     public void execute()
     {
-        PID = pid.calculate(photon.getYaw(), 0);
+        double targetYaw = photon.getYaw();
+        PID = pid.calculate(targetYaw , 0);
         Math.max(-1, Math.min(1, PID));
-
-        vY = PID;
-
+        double vY = PID;
+        SmartDashboard.putNumber("Y PID", vY);
+        // SmartDashboard.putNumber("Chase PID", PID);
+        // SmartDashboard.putNumber("Photon Yaw", photon.getYaw());
         // Get the desired chassis speeds based on a 2 joystick module.
         ChassisSpeeds desiredSpeeds = swerve.getTargetSpeeds(vX, vY,headingHorizontal,headingVertical);
 
