@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -18,6 +19,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.StopShooter;
 import frc.robot.commands.Autonomous.BasicAuto;
 import frc.robot.commands.Autonomous.FollowNoteAuto;
+import frc.robot.commands.Autonomous.StartFromAngle;
 import frc.robot.commands.Climber.AutoClimb;
 import frc.robot.commands.Shooter.SmartFire;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
@@ -52,13 +54,18 @@ public class RobotContainer {
     private SendableChooser<Command> m_auto = new SendableChooser<>();
     private final Command BasicAuto = new BasicAuto(drivebase); 
     private final Command FollowNoteAuto = new FollowNoteAuto(drivebase); 
+    private final Command StartFromAngle = new StartFromAngle(drivebase);     
+
+
     private final Command SmartFire = new SmartFire(shooter,indexer,driverXbox);   
-    private final Command StopShooter = new StopShooter(shooter);   
+    private final Command StopShooter = new StopShooter(shooter); 
 
 
     public RobotContainer() {
         m_auto.setDefaultOption("BasicAuto", BasicAuto);
+        m_auto.addOption("Start From Angle", StartFromAngle);
         m_auto.addOption("Follow Note", FollowNoteAuto);
+        SmartDashboard.putData("Autonomous Routine", m_auto);
 
         configureButtonBindings();
         configureDefaultCommands();

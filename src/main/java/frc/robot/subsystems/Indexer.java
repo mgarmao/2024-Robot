@@ -5,6 +5,9 @@
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -17,11 +20,12 @@ public class Indexer extends SubsystemBase {
 
     public Indexer() {
         /** Create a new object to control the SPARK MAX motor controllers. */
-
-        motor.getConfigurator().apply(new TalonFXConfiguration());
+        CurrentLimitsConfigs configs = new CurrentLimitsConfigs().withStatorCurrentLimit(Constants.IndexerAmpLimit).withSupplyCurrentLimit(Constants.IndexerAmpLimit).withStatorCurrentLimitEnable(true).withSupplyCurrentLimitEnable(true);
+        motor.getConfigurator().apply(new TalonFXConfiguration().withCurrentLimits(configs));
         motor.setNeutralMode(NeutralModeValue.Brake);
         motor.setInverted(false);
 
+    
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
          * will effectively disconnect all motor wires. This allows the motor to spin down at 
