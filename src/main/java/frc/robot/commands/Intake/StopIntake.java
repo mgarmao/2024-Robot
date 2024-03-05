@@ -1,23 +1,19 @@
 package frc.robot.commands.Intake;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 
-public class RunIntake extends Command
+public class StopIntake extends Command
 {
 
-    private final Indexer indexer;
     private final Intake intake;
 
 
-    public RunIntake(Intake intake, Indexer indexer)
+    public StopIntake(Intake intake)
     {
         this.intake = intake;
-        this.indexer = indexer;
-        
+
         addRequirements(this.intake);
-        addRequirements(this.indexer);
     }
 
 
@@ -31,8 +27,7 @@ public class RunIntake extends Command
   @Override
   public void execute()
   {
-    intake.run();
-    indexer.run(0.06);
+    intake.set(0);
   }
 
 

@@ -26,9 +26,9 @@ public class ChaseNote extends Command
     private final Double vX;
     private double vY=0;
     private double PID = 0; 
-    double kP = 0.03;
+    double kP = 0.027;
     double kI = 0.0;
-    double kD = 0.02;
+    double kD = 0.03;
 
     PIDController pid = new PIDController(kP, kI, kD);
 
@@ -105,6 +105,11 @@ public class ChaseNote extends Command
     @Override
     public boolean isFinished()
     {
-        return false;
+        if(photon.hasTarget()){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

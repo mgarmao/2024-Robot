@@ -18,12 +18,12 @@ public class AutoSmartFire extends Command
 
     public AutoSmartFire(Shooter shooter, Indexer indexer)
     {
-        this.shooter = shooter;
-        this.indexer = indexer;
-        indexing = false;
-        timer = new Timer();
-        addRequirements(this.shooter);
-        addRequirements(this.indexer);
+      this.shooter = shooter;
+      this.indexer = indexer;
+      indexing = false;
+      timer = new Timer();
+      addRequirements(this.shooter);
+      addRequirements(this.indexer);
     }
 
 
@@ -38,13 +38,17 @@ public class AutoSmartFire extends Command
   @Override
   public void execute()
   {
-    if((shooter.getRPM()>6000)&&!indexing){
-        indexer.run(0.4);
-        timer.start();
-        timerZero = timer.get();
-        indexing = true;
-    }
+    SmartDashboard.putBoolean("INDEXING", indexing);
     SmartDashboard.putNumber("Timer", timer.get());
+    if((shooter.getRPM()>6000)&&!indexing){
+      indexer.run(0.6);
+      timer.start();
+      timerZero = timer.get();
+      indexing = true;
+    }
+    if(!indexing){
+      timer.stop();
+    }
   }
 
 
