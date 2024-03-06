@@ -40,8 +40,8 @@ public class AutoSmartFire extends Command
   {
     SmartDashboard.putBoolean("INDEXING", indexing);
     SmartDashboard.putNumber("Timer", timer.get());
-    if((shooter.getRPM()>6000)&&!indexing){
-      indexer.run(0.6);
+    if((shooter.getRPM()>6100)&&!indexing){
+      indexer.run(1);
       timer.start();
       timerZero = timer.get();
       indexing = true;

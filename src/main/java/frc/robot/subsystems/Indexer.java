@@ -3,10 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.DutyCycleOut;
@@ -24,6 +26,8 @@ public class Indexer extends SubsystemBase {
         motor.getConfigurator().apply(new TalonFXConfiguration().withCurrentLimits(configs));
         motor.setNeutralMode(NeutralModeValue.Brake);
         motor.setInverted(false);
+
+        
 
     
         /**
@@ -46,18 +50,17 @@ public class Indexer extends SubsystemBase {
     }
 
     /** Eject cargo from the robot. */
-    public Command stop() {
-        return runOnce(
-        ()->{
-            motor.set(0);
-        });
+    public void stop() {
+
+        motor.set(0);
     }
     
 
     /** This method will be called once per scheduler run. */
     @Override
     public void periodic() {
-        
+        var motorVoltage = motor.getMotorVoltage().getValue();
+        SmartDashboard.putNumber("IndexerVoltage", motorVoltage); //1.65 is when hits intake
     }
 
 }

@@ -1,9 +1,12 @@
 package frc.robot.commands.Shooter;
 
+import static frc.robot.RobotContainer.intake;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 
@@ -12,19 +15,15 @@ public class SmartFire extends Command
 
     private final Shooter shooter;
     private final Indexer indexer;
-
-    private double timerZero;
-    private Timer timer;
-    private boolean indexing;
+    
     private CommandXboxController XboxController;
+    int samples = 0;
 
     public SmartFire(Shooter shooter, Indexer indexer,CommandXboxController XboxController)
     {
         this.shooter = shooter;
         this.indexer = indexer;
         this.XboxController = XboxController;
-        indexing = false;
-        timer = new Timer();
         addRequirements(this.shooter);
         addRequirements(this.indexer);
     }
@@ -33,37 +32,37 @@ public class SmartFire extends Command
   @Override
   public void initialize()
   {
-    shooter.fire(1);
-    timer.reset();
+    intake.set(0);
   }
 
 
   @Override
   public void execute()
   {
-    if((shooter.getRPM()>6000)&&!indexing){
-        indexer.run(0.4);
-        timer.start();
-        timerZero = timer.get();
-        indexing = true;
+    if(shooter.getRPM()>Constants.smartShooterRPMThresh){
+      if(samples>=5){
+        indexer.run(1);
+      }
     }
-    SmartDashboard.putNumber("Timer", timer.get());
+
+    if(shooter.getRPM()>Constants.smartShooterRPMThresh){
+      samples = samples+1;
+    }
+    else{
+      samples = 0;
+    }
   }
 
 
   @Override
   public boolean isFinished()
   {
-    SmartDashboard.putNumber("Timer", timer.get());
-    SmartDashboard.putNumber("TimerZero", timerZero);
-    if((timer.get()-timerZero)>=1||!(XboxController.rightTrigger().getAsBoolean())){
-      shooter.fire(0);
-      indexer.run(0);
-      indexing=false;
-      return true;
+    if(XboxController.rightTrigger().getAsBoolean()){
+      return false;
     }
     else{
-      return false;
+      indexer.run(0);
+      return true;
     }
   }
 

@@ -120,11 +120,11 @@ public class RobotContainer {
     private void configureButtonBindings() {
         driverXbox.a().onTrue((new InstantCommand(drivebase::zeroGyro)));
         
-        driverXbox.rightTrigger().onTrue(SmartFire).onFalse(StopShooter);
+        driverXbox.rightTrigger().onTrue(SmartFire).onFalse(new InstantCommand(()->intake.stop()));
         // driverXbox.rightTrigger().toggleOnTrue(indexer.run(1)).toggleOnFalse(indexer.stop());
 
         // driverXbox.leftTrigger().onTrue(shooter.fire(-1)).toggleOnFalse(shooter.stop());
-        driverXbox.leftTrigger().toggleOnTrue(new InstantCommand(()->indexer.run(-0.7))).toggleOnFalse(indexer.stop());
+        driverXbox.leftTrigger().toggleOnTrue(new InstantCommand(()->indexer.run(-0.7))).toggleOnFalse(new InstantCommand(()->indexer.stop()));
 
         driverXbox.leftBumper().toggleOnTrue(climber.runFoward());   
         driverXbox.rightBumper().toggleOnTrue(climber.runBackwards());   
@@ -133,7 +133,7 @@ public class RobotContainer {
         driverXbox.povDown().onTrue(new InstantCommand(()->intake.extend())).toggleOnFalse(new InstantCommand(()->intake.stopExtendRetract())); 
 
         driverXbox.x().toggleOnTrue(new InstantCommand(()->intake.run())).toggleOnFalse(intake.stop());
-        driverXbox.x().onTrue(new InstantCommand(()->indexer.run(0.15))).onFalse(indexer.stop());
+        driverXbox.x().onTrue(new InstantCommand(()->indexer.run(1))).onFalse(new InstantCommand(()->indexer.stop()));
 
         driverXbox.b().toggleOnTrue(intake.reverse()).toggleOnFalse(intake.stop());
 
