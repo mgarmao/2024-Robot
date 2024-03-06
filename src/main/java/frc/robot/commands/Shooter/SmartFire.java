@@ -41,7 +41,7 @@ public class SmartFire extends Command
   {
     if(shooter.getRPM()>Constants.smartShooterRPMThresh){
       if(samples>=5){
-        indexer.run(1);
+        indexer.run(Constants.indexerShootSpeed);
       }
     }
 

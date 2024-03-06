@@ -133,7 +133,7 @@ public class RobotContainer {
         driverXbox.povDown().onTrue(new InstantCommand(()->intake.extend())).toggleOnFalse(new InstantCommand(()->intake.stopExtendRetract())); 
 
         driverXbox.x().toggleOnTrue(new InstantCommand(()->intake.run())).toggleOnFalse(intake.stop());
-        driverXbox.x().onTrue(new InstantCommand(()->indexer.run(1))).onFalse(new InstantCommand(()->indexer.stop()));
+        driverXbox.x().onTrue(new InstantCommand(()->indexer.run(Constants.indexerIntakeSpeed))).onFalse(new InstantCommand(()->indexer.stop()));
 
         driverXbox.b().toggleOnTrue(intake.reverse()).toggleOnFalse(intake.stop());
 

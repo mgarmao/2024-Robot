@@ -1,6 +1,7 @@
 package frc.robot.commands.Intake;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 
@@ -32,7 +33,7 @@ public class RunIntake extends Command
   public void execute()
   {
     intake.run();
-    indexer.run(0.06);
+    indexer.run(Constants.indexerIntakeSpeed);
   }
 
 

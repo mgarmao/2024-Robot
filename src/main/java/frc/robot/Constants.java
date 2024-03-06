@@ -56,6 +56,9 @@ public final class Constants
 
   public static int smartShooterRPMThresh = 6200;
 
+  public static double indexerShootSpeed = 0.7;
+  public static double indexerIntakeSpeed = 0.07;
+
   public static final class Auton
   {
 
