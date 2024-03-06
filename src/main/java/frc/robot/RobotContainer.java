@@ -120,7 +120,7 @@ public class RobotContainer {
     private void configureButtonBindings() {
         driverXbox.a().onTrue((new InstantCommand(drivebase::zeroGyro)));
         
-        driverXbox.rightTrigger().onTrue(SmartFire).onFalse(new InstantCommand(()->intake.stop()));
+        driverXbox.rightTrigger().onTrue(new InstantCommand(()->indexer.run(0.95))).onFalse(new InstantCommand(()->indexer.stop()));
         // driverXbox.rightTrigger().toggleOnTrue(indexer.run(1)).toggleOnFalse(indexer.stop());
 
         // driverXbox.leftTrigger().onTrue(shooter.fire(-1)).toggleOnFalse(shooter.stop());
@@ -138,7 +138,7 @@ public class RobotContainer {
         driverXbox.b().toggleOnTrue(intake.reverse()).toggleOnFalse(intake.stop());
 
 
-        driverXbox.y().toggleOnTrue(new InstantCommand(() -> shooter.fire(1.0))).onFalse(new InstantCommand(() -> shooter.fire(0)));
+        driverXbox.y().toggleOnTrue(new InstantCommand(() -> shooter.fire(0.9))).onFalse(new InstantCommand(() -> shooter.fire(0)));
         
         driverXbox.povRight().onTrue(new AutoClimb(driverXbox)).onFalse(climber.stop());
         // driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));

@@ -22,8 +22,11 @@ public class Indexer extends SubsystemBase {
 
     public Indexer() {
         /** Create a new object to control the SPARK MAX motor controllers. */
+        
         CurrentLimitsConfigs configs = new CurrentLimitsConfigs().withStatorCurrentLimit(Constants.IndexerAmpLimit).withSupplyCurrentLimit(Constants.IndexerAmpLimit).withStatorCurrentLimitEnable(true).withSupplyCurrentLimitEnable(true);
         motor.getConfigurator().apply(new TalonFXConfiguration().withCurrentLimits(configs));
+        // motor.getConfigurator().apply(new TalonFXConfiguration());
+
         motor.setNeutralMode(NeutralModeValue.Brake);
         motor.setInverted(false);
 

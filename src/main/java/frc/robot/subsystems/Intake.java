@@ -30,7 +30,7 @@ public class Intake extends SubsystemBase {
 
     public Intake() {
         /** Create a new object to control the SPARK MAX motor controllers. */
-        CurrentLimitsConfigs configs = new CurrentLimitsConfigs().withStatorCurrentLimit(Constants.IndexerAmpLimit).withSupplyCurrentLimit(Constants.IndexerAmpLimit).withStatorCurrentLimitEnable(true).withSupplyCurrentLimitEnable(true);
+        CurrentLimitsConfigs configs = new CurrentLimitsConfigs().withSupplyCurrentLimit(Constants.IndexerAmpLimit).withSupplyCurrentLimitEnable(true);
 
         motor.getConfigurator().apply(new TalonFXConfiguration().withCurrentLimits(configs));
         motor.setNeutralMode(NeutralModeValue.Brake);

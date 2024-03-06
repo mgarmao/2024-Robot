@@ -61,7 +61,7 @@ public class SmartFire extends Command
       return false;
     }
     else{
-      indexer.run(0);
+      // indexer.run(0);
       return true;
     }
   }

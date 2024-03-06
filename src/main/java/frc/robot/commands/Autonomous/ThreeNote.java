@@ -26,8 +26,8 @@ import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
 
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
-public class BasicAuto extends SequentialCommandGroup {
-    public BasicAuto(SwerveSubsystem swerve) {
+public class ThreeNote extends SequentialCommandGroup {
+    public ThreeNote(SwerveSubsystem swerve) {
         addCommands(
             new DropIntake(intake).withTimeout(2.5),
             new ReverseIndexer(indexer).withTimeout(0.1),

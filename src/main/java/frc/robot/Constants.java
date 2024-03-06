@@ -43,7 +43,7 @@ public final class Constants
   public static final int ClimberAmpLimit = 10;
 
   public static final int IndexMotor = 14;
-  public static final int IndexerAmpLimit = 16;
+  public static final int IndexerAmpLimit = 45;
 
   public static int requestedPipeline = 0;
   public static int startingApriltag = 0;
@@ -54,9 +54,9 @@ public final class Constants
   public static int RingPipeline = 0;
   public static int ApriltagPipeline = 1;
 
-  public static int smartShooterRPMThresh = 6200;
+  public static int smartShooterRPMThresh = 5800;
 
-  public static double indexerShootSpeed = 0.7;
+  public static double indexerShootSpeed = 0.9;
   public static double indexerIntakeSpeed = 0.07;
 
   public static final class Auton
