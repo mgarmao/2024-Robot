@@ -32,21 +32,25 @@ public class BasicAuto extends SequentialCommandGroup {
             new DropIntake(intake).withTimeout(2),
             new ReverseIndexer(indexer).withTimeout(0.2),
             new StopIndexer(indexer).withTimeout(0.2),
+            
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopExtendRetract(intake),
             new StopShooter(shooter),
+            
             new RunIntake(intake,indexer).withTimeout(1),
             new ChaseNote(swerve, 0.5, 0.0, 0.0).withTimeout(2),
             new AutoAbsoluteDrive(swerve, 0.5,0.0, 0.0, 0.0).withTimeout(1),
             new RaiseIntake(intake).withTimeout(0.3),
             new DropIntake(intake).withTimeout(0.3),
             new StopExtendRetract(intake).withTimeout(0.1),
+            
             new AutoAbsoluteDrive(swerve,-0.5,0.0,0.0,0.0).withTimeout(4),
             new StopIntake(intake),
             new ReverseIndexer(indexer).withTimeout(0.8),
             new StopIndexer(indexer).withTimeout(0.1),
+            
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter)
         );
-  }
+    }
 }

@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-import static frc.robot.RobotContainer.photon;
-
 import java.util.List;
 
 import org.photonvision.PhotonCamera;

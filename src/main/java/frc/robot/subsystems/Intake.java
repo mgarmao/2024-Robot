@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -29,12 +30,14 @@ public class Intake extends SubsystemBase {
 
     public Intake() {
         /** Create a new object to control the SPARK MAX motor controllers. */
-        rotator1 = new CANSparkMax(Constants.rotator1, MotorType.kBrushless);
-        rotator2 = new CANSparkMax(Constants.rotator2, MotorType.kBrushless);
+        CurrentLimitsConfigs configs = new CurrentLimitsConfigs().withStatorCurrentLimit(Constants.IndexerAmpLimit).withSupplyCurrentLimit(Constants.IndexerAmpLimit).withStatorCurrentLimitEnable(true).withSupplyCurrentLimitEnable(true);
 
-        motor.getConfigurator().apply(new TalonFXConfiguration());
+        motor.getConfigurator().apply(new TalonFXConfiguration().withCurrentLimits(configs));
         motor.setNeutralMode(NeutralModeValue.Brake);
         motor.setInverted(false);
+
+        rotator1 = new CANSparkMax(Constants.rotator1, MotorType.kBrushless);
+        rotator2 = new CANSparkMax(Constants.rotator2, MotorType.kBrushless);
 
         rotator1.restoreFactoryDefaults();
         rotator2.restoreFactoryDefaults();
