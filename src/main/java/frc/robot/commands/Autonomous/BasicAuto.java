@@ -23,12 +23,14 @@ import frc.robot.commands.Intake.StopIntake;
 import frc.robot.commands.Shooter.AutoSmartFire;
 import frc.robot.commands.Shooter.ReverseShooter;
 import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
-
+import frc.robot.commands.swervedrive.drivebase.SetGyroOffset;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
 public class BasicAuto extends SequentialCommandGroup {
     public BasicAuto(SwerveSubsystem swerve) {
         addCommands(
+            new SetGyroOffset(swerve, 180).withTimeout(0.2),
+
             new DropIntake(intake).withTimeout(2.5),
             new StopIndexer(indexer).withTimeout(0.5),
             new ReverseIndexer(indexer).withTimeout(0.2),
