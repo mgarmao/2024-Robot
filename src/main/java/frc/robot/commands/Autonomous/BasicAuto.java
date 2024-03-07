@@ -30,11 +30,12 @@ public class BasicAuto extends SequentialCommandGroup {
     public BasicAuto(SwerveSubsystem swerve) {
         addCommands(
             new DropIntake(intake).withTimeout(2.5),
-            new ReverseIndexer(indexer).withTimeout(0.1),
+            new StopIndexer(indexer).withTimeout(0.5),
+            new ReverseIndexer(indexer).withTimeout(0.2),
             new StopIndexer(indexer).withTimeout(0.1),
+            new StopExtendRetract(intake).withTimeout(0.1),
             
             new AutoSmartFire(shooter, indexer).withTimeout(5),
-            new StopExtendRetract(intake),
             new StopShooter(shooter),
             
             new RunIntake(intake,indexer).withTimeout(1),
@@ -46,9 +47,10 @@ public class BasicAuto extends SequentialCommandGroup {
             
             new AutoAbsoluteDrive(swerve,-0.7,0.0,0.0,0.0).withTimeout(4),
             new StopIntake(intake),
-            new ReverseShooter(shooter,indexer).withTimeout(0.1),
+            new ReverseShooter(shooter,indexer).withTimeout(0.07),
             new StopIndexer(indexer).withTimeout(0.1),
             new StopShooter(shooter).withTimeout(0.1),
+            new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter)
         );

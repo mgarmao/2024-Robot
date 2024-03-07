@@ -13,7 +13,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Photon;
 
+import static frc.robot.RobotContainer.indexer;
+import static frc.robot.RobotContainer.intake;
 import static frc.robot.RobotContainer.photon;
+import static frc.robot.RobotContainer.shooter;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,6 +90,10 @@ public class Robot extends TimedRobot
   public void disabledInit()
   {
     m_robotContainer.setMotorBrake(true);
+    intake.stop();
+    shooter.stop();
+    indexer.stop();
+    intake.stopExtendRetract();
     disabledTimer.reset();
     disabledTimer.start();
   }
