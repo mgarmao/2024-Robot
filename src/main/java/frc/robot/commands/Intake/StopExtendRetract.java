@@ -1,11 +1,12 @@
 package frc.robot.commands.Intake;
 
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Intake;
+import swervelib.imu.SwerveIMU;
 
 public class StopExtendRetract extends Command
 {
-
     private final Intake intake;
 
 
@@ -28,6 +29,7 @@ public class StopExtendRetract extends Command
   public void execute()
   {
     intake.stopExtendRetract();
+
   }
 
 
