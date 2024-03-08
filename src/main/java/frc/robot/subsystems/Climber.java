@@ -36,17 +36,17 @@ public class Climber extends SubsystemBase {
         final float motorZero = (float)motor.getEncoder().getPosition();
         final float motor2Zero = (float)motor2.getEncoder().getPosition();
 
-        motor.setSoftLimit(SoftLimitDirection.kForward, motorZero+(Constants.ClimberUpperLimit-Constants.ClimberLowerLimit));
-        motor.setSoftLimit(SoftLimitDirection.kReverse, motorZero);
+        motor.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberUpperLimit);
+        motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberLowerLimit);
 
-        motor.setSoftLimit(SoftLimitDirection.kForward, motor2Zero+(Constants.ClimberUpperLimit-Constants.ClimberLowerLimit));
-        motor2.setSoftLimit(SoftLimitDirection.kReverse, motor2Zero);
+        motor.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberUpperLimit);
+        motor2.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberLowerLimit);
 
-        motor.enableSoftLimit(SoftLimitDirection.kForward, true);
-        motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
+        motor.enableSoftLimit(SoftLimitDirection.kForward, false);
+        motor.enableSoftLimit(SoftLimitDirection.kReverse, false);
 
-        motor2.enableSoftLimit(SoftLimitDirection.kForward, true);
-        motor2.enableSoftLimit(SoftLimitDirection.kReverse, true);
+        motor2.enableSoftLimit(SoftLimitDirection.kForward, false);
+        motor2.enableSoftLimit(SoftLimitDirection.kReverse, false);
 
         /**
          * When the SPARK MAX is receiving a neutral command, the idle behavior of the motor 
@@ -56,8 +56,8 @@ public class Climber extends SubsystemBase {
         motor.setIdleMode(IdleMode.kBrake);
         motor2.setIdleMode(IdleMode.kBrake);
         
-        motor.setInverted(false);
-        motor2.setInverted(true);
+        motor.setInverted(true);
+        motor2.setInverted(false);
     }
 
     /** Retrieve cargo for transportation. */

@@ -5,17 +5,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
 
-public class SetGyroOffset extends Command
+public class ZeroGyro extends Command
 {
   private final SwerveSubsystem swerve;
-  private final double angleOffset;
 
 
-    public SetGyroOffset(SwerveSubsystem swerve,double angleOffset)
+    public ZeroGyro(SwerveSubsystem swerve)
     {
         this.swerve = swerve;
-        this.angleOffset = angleOffset;
-
         addRequirements(this.swerve);
     }
 
@@ -30,8 +27,7 @@ public class SetGyroOffset extends Command
   @Override
   public void execute()
   {
-    Rotation3d rotation3dOffsetRads = new Rotation3d(0.0,0.0,angleOffset);
-    swerve.setGyroOffset(rotation3dOffsetRads);
+    swerve.zeroGyro();
   }
 
 

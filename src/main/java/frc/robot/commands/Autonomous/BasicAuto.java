@@ -29,7 +29,7 @@ import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 public class BasicAuto extends SequentialCommandGroup {
     public BasicAuto(SwerveSubsystem swerve) {
         addCommands(
-            new SetGyroOffset(swerve, 180).withTimeout(0.2),
+            // new SetGyroOffset(swerve, Math.PI).withTimeout(0.2),
 
             new DropIntake(intake).withTimeout(2.5),
             new StopIndexer(indexer).withTimeout(0.5),
@@ -42,13 +42,13 @@ public class BasicAuto extends SequentialCommandGroup {
             new StopShooter(shooter),
             
             new RunIntake(intake,indexer).withTimeout(1),
-            new ChaseNote(swerve, 0.8, 0.0, 0.0).withTimeout(0.8),
-            new AutoAbsoluteDrive(swerve, 0.6,0.0, 0.0, 0.0).withTimeout(0.6),
+            new ChaseNote(swerve, 0.65, 0.0, 0.0).withTimeout(1.1),
+            new AutoAbsoluteDrive(swerve, 0.6,0.0, 0.0, 0.0).withTimeout(0.3),
             new RaiseIntake(intake).withTimeout(0.3),
             new DropIntake(intake).withTimeout(0.3),
             new StopExtendRetract(intake).withTimeout(0.1),
             
-            new AutoAbsoluteDrive(swerve,-0.7,0.0,0.0,0.0).withTimeout(4),
+            new AutoAbsoluteDrive(swerve,-0.75,0.0,0.0,0.0).withTimeout(2.5),
             new StopIntake(intake),
             new ReverseShooter(shooter,indexer).withTimeout(0.07),
             new StopIndexer(indexer).withTimeout(0.1),

@@ -54,7 +54,7 @@ public final class Constants
   public static int RingPipeline = 0;
   public static int ApriltagPipeline = 1;
 
-  public static int smartShooterRPMThresh = 6100;
+  public static int smartShooterRPMThresh = 5000;
 
   public static double indexerShootSpeed = 0.9;
   public static double indexerIntakeSpeed = 0.07;
