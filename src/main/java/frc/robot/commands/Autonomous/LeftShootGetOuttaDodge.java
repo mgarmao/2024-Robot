@@ -26,10 +26,10 @@ import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.ZeroGyro;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
-public class RightStartFromAngle extends SequentialCommandGroup {
-    public RightStartFromAngle(SwerveSubsystem swerve) {
+public class LeftShootGetOuttaDodge extends SequentialCommandGroup {
+    public LeftShootGetOuttaDodge(SwerveSubsystem swerve) {
         addCommands(
-           
+
             new DropIntake(intake).withTimeout(2.5),
             new StopIndexer(indexer).withTimeout(0.5),
             new ReverseIndexer(indexer).withTimeout(0.2),
@@ -39,28 +39,13 @@ public class RightStartFromAngle extends SequentialCommandGroup {
             
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter),
-            new RunIntake(intake,indexer).withTimeout(1),
             
-            new AutoAbsoluteDrive(swerve,0.85,0.0,0.0,0.0).withTimeout(0.3),
-
-            new AutoAbsoluteDrive(swerve,0.0,0.0,0.4,-0.4).withTimeout(2), //angle
-            new ZeroGyro(swerve),
-
-            new ChaseNote(swerve, 0.65, 0.0, 0.0).withTimeout(0.5),
-            new AutoAbsoluteDrive(swerve, 0.6,0.0, 0.0, 0.0).withTimeout(0.4),
-            new RaiseIntake(intake).withTimeout(0.3),
-            new DropIntake(intake).withTimeout(0.3),
-            new StopExtendRetract(intake).withTimeout(0.1),
-            new AutoAbsoluteDrive(swerve,-0.75,0.0,0.0,0.0).withTimeout(1),
+            new AutoAbsoluteDrive(swerve,0.5,0.0,0.0,0.0).withTimeout(3),
 
             new AutoAbsoluteDrive(swerve,0.0,0.0,-0.4,-0.4).withTimeout(2), //angle
-            new ZeroGyro(swerve).withTimeout(0.1),
-            
-            new AutoAbsoluteDrive(swerve,-0.65,0.0,0.0,0.0).withTimeout(1.4),
-            new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
-            new AutoSmartFire(shooter, indexer).withTimeout(5),
-            new StopShooter(shooter),
-            new StopIntake(intake)
+            new ZeroGyro(swerve),
+
+            new AutoAbsoluteDrive(swerve, 0.5,0.0, 0.0, 0.0).withTimeout(2)
         );
   }
 }

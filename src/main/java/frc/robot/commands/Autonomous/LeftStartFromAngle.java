@@ -13,6 +13,8 @@ import static frc.robot.RobotContainer.intake;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ChaseNote;
 import frc.robot.commands.StopShooter;
+import frc.robot.commands.Indexer.ReverseIndexer;
+import frc.robot.commands.Indexer.StopIndexer;
 import frc.robot.commands.Intake.DropIntake;
 import frc.robot.commands.Intake.RaiseIntake;
 import frc.robot.commands.Intake.RunIntake;
@@ -27,9 +29,13 @@ import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 public class LeftStartFromAngle extends SequentialCommandGroup {
     public LeftStartFromAngle(SwerveSubsystem swerve) {
         addCommands(
-            new DropIntake(intake).withTimeout(2),
-            new StopExtendRetract(intake),
-
+            new DropIntake(intake).withTimeout(2.5),
+            new StopIndexer(indexer).withTimeout(0.5),
+            new ReverseIndexer(indexer).withTimeout(0.2),
+            new StopIndexer(indexer).withTimeout(0.1),
+            new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
+            new StopExtendRetract(intake).withTimeout(0.1),
+            
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter),
             new RunIntake(intake,indexer).withTimeout(1),
