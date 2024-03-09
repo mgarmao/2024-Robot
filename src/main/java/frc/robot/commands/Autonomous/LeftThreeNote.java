@@ -28,8 +28,8 @@ import frc.robot.commands.swervedrive.drivebase.SetGyroOffset;
 import frc.robot.commands.swervedrive.drivebase.ZeroGyro;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
-public class ThreeNote extends SequentialCommandGroup {
-    public ThreeNote(SwerveSubsystem swerve) {
+public class LeftThreeNote extends SequentialCommandGroup {
+    public LeftThreeNote(SwerveSubsystem swerve) {
         addCommands(
             new DropIntake(intake).withTimeout(2.5),
             new StopIndexer(indexer).withTimeout(0.01),
@@ -63,7 +63,7 @@ public class ThreeNote extends SequentialCommandGroup {
             ///////////
 
             new AutoAbsoluteDrive(swerve,0.85,0.0,0.0,0.0).withTimeout(0.3),
-            new AutoAbsoluteDrive(swerve,0.0,0.0,-0.6,0.5).withTimeout(1.5), //angle for one
+            new AutoAbsoluteDrive(swerve,0.0,0.0,0.6,0.5).withTimeout(1.5), //angle for one
             new ZeroGyro(swerve).withTimeout(1),
             
             new RunIntake(intake,indexer).withTimeout(1),
@@ -73,7 +73,7 @@ public class ThreeNote extends SequentialCommandGroup {
 
             new AutoAbsoluteDrive(swerve,-0.8,0.0,0.0,0.0).withTimeout(0.85),
                   
-            new AutoAbsoluteDrive(swerve,0.0,0.0,0.75,0.6).withTimeout(0.6), //angle for one
+            new AutoAbsoluteDrive(swerve,0.0,0.0,-0.75,0.6).withTimeout(0.6), //angle for one
             new ZeroGyro(swerve).withTimeout(1),
             new AutoAbsoluteDrive(swerve,-0.7,0.0,0.0,0.0).withTimeout(0.45), 
             new AutoAbsoluteDrive(swerve,-0.55,0.0,0.0,0.0).withTimeout(0.8) 
