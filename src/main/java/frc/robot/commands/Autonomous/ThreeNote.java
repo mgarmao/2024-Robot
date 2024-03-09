@@ -22,6 +22,7 @@ import frc.robot.commands.Intake.StopExtendRetract;
 import frc.robot.commands.Intake.StopIntake;
 import frc.robot.commands.Shooter.AutoSmartFire;
 import frc.robot.commands.Shooter.ReverseShooter;
+import frc.robot.commands.Shooter.ReverseShooterSlow;
 import frc.robot.commands.Shooter.SpinUpShooter;
 import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.SetGyroOffset;
@@ -45,6 +46,7 @@ public class ThreeNote extends SequentialCommandGroup {
             
             new RunIntake(intake,indexer).withTimeout(0.1),
             new ChaseNote(swerve, 0.65, 0.0, 0.0).withTimeout(1.1),
+            new ReverseShooterSlow(shooter).withTimeout(0.01),
             new AutoAbsoluteDrive(swerve, 0.6,0.0, 0.0, 0.0).withTimeout(0.3),
             new RaiseIntake(intake).withTimeout(0.3),
             new DropIntake(intake).withTimeout(0.3),
@@ -66,6 +68,7 @@ public class ThreeNote extends SequentialCommandGroup {
             new AutoAbsoluteDrive(swerve,0.0,0.0,-0.6,0.5).withTimeout(1.5), //angle for one
             new ZeroGyro(swerve).withTimeout(1),
             
+            new ReverseShooterSlow(shooter).withTimeout(0.01),
             new RunIntake(intake,indexer).withTimeout(1),
             new AutoAbsoluteDrive(swerve,0.7,0.0,0.0,0.0).withTimeout(0.3),
             new ChaseNote(swerve, 0.7, 0.0, 0.0).withTimeout(0.5),

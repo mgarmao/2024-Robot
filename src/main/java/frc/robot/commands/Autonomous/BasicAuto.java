@@ -22,6 +22,7 @@ import frc.robot.commands.Intake.StopExtendRetract;
 import frc.robot.commands.Intake.StopIntake;
 import frc.robot.commands.Shooter.AutoSmartFire;
 import frc.robot.commands.Shooter.ReverseShooter;
+import frc.robot.commands.Shooter.ReverseShooterSlow;
 import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.SetGyroOffset;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
@@ -41,6 +42,7 @@ public class BasicAuto extends SequentialCommandGroup {
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter),
             
+            new ReverseShooterSlow(shooter).withTimeout(0.01),
             new RunIntake(intake,indexer).withTimeout(1),
             new ChaseNote(swerve, 0.65, 0.0, 0.0).withTimeout(1.1),
             new AutoAbsoluteDrive(swerve, 0.6,0.0, 0.0, 0.0).withTimeout(0.3),
