@@ -19,9 +19,12 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.StopShooter;
 import frc.robot.commands.Autonomous.BasicAuto;
 import frc.robot.commands.Autonomous.FollowNoteAuto;
-import frc.robot.commands.Autonomous.StartFromAngle;
+import frc.robot.commands.Autonomous.LeftStartFromAngle;
 import frc.robot.commands.Autonomous.ThreeNote;
+import frc.robot.commands.Autonomous.ShortThreeNote;
+import frc.robot.commands.Autonomous.LeftThreeNote;
 import frc.robot.commands.Autonomous.GetOuttaDodge;
+import frc.robot.commands.Autonomous.RightStartFromAngle;
 import frc.robot.commands.Climber.AutoClimb;
 import frc.robot.commands.Shooter.SmartFire;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
@@ -58,9 +61,12 @@ public class RobotContainer {
     private SendableChooser<Command> m_auto = new SendableChooser<>();
     private final Command BasicAuto = new BasicAuto(drivebase); 
     private final Command FollowNoteAuto = new FollowNoteAuto(drivebase); 
-    private final Command StartFromAngle = new StartFromAngle(drivebase);    
+    private final Command LeftStartFromAngle = new LeftStartFromAngle(drivebase);
+    private final Command RightStartFromAngle = new RightStartFromAngle(drivebase);        
     private final Command ThreeNote = new ThreeNote(drivebase);
-    private final Command GetOuttaDodge = new GetOuttaDodge(drivebase);            
+    private final Command GetOuttaDodge = new GetOuttaDodge(drivebase);  
+    private final Command ShortThreeNote = new ShortThreeNote(drivebase);            
+    private final Command LeftThreeNote = new LeftThreeNote(drivebase);                      
 
 
     private final Command SmartFire = new SmartFire(shooter,indexer,driverXbox);   
@@ -68,10 +74,13 @@ public class RobotContainer {
 
 
     public RobotContainer() {
-        m_auto.setDefaultOption("BasicAuto", BasicAuto);
-        m_auto.addOption("Start From Angle", StartFromAngle);
+        m_auto.setDefaultOption("2Note", BasicAuto);
+        m_auto.addOption("LeftStartFromAngle", LeftStartFromAngle);
+        m_auto.addOption("RightStartFromAngle", RightStartFromAngle);
         m_auto.addOption("Follow Note", FollowNoteAuto);
         m_auto.addOption("ThreeNote", ThreeNote);
+        m_auto.addOption("LeftThreeNote", LeftThreeNote);
+        m_auto.addOption("ShortThreeNote", ShortThreeNote);
         m_auto.addOption("getOuttaDodge", GetOuttaDodge);
         SmartDashboard.putData("Autonomous Routine", m_auto);
 
