@@ -36,11 +36,11 @@ public class Climber extends SubsystemBase {
         final float motorZero = (float)motor.getEncoder().getPosition();
         final float motor2Zero = (float)motor2.getEncoder().getPosition();
 
-        motor.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberUpperLimit);
-        motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberLowerLimit);
+        motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberUpperLimit);
+        motor.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberLowerLimit);
 
-        motor.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberUpperLimit);
-        motor2.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberLowerLimit);
+        motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberUpperLimit);
+        motor2.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberLowerLimit);
 
         motor.enableSoftLimit(SoftLimitDirection.kForward, false);
         motor.enableSoftLimit(SoftLimitDirection.kReverse, false);
