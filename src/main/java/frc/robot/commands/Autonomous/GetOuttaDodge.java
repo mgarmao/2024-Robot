@@ -17,7 +17,7 @@ import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 public class GetOuttaDodge extends SequentialCommandGroup {
     public GetOuttaDodge(SwerveSubsystem swerve) {
         addCommands(
-            new AutoAbsoluteDrive(swerve, -0.57,0.0, 0.0, 0.0).withTimeout(5)
+            new AutoAbsoluteDrive(swerve,0.7,0.0,0.0,0.0).withTimeout(4.0)
         );
     }
 }

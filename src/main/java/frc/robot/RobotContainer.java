@@ -27,6 +27,8 @@ import frc.robot.commands.Autonomous.RightShootGetOuttaDodge;
 import frc.robot.commands.Autonomous.GetOuttaDodge;
 import frc.robot.commands.Autonomous.LeftShootGetOuttaDodge;
 import frc.robot.commands.Autonomous.RightStartFromAngle;
+import frc.robot.commands.Autonomous.OneNoteDAuto;
+import frc.robot.commands.Autonomous.MultiNoteDAuto;
 import frc.robot.commands.Climber.AutoClimb;
 import frc.robot.commands.Shooter.SmartFire;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
@@ -72,7 +74,9 @@ public class RobotContainer {
     private final Command ShortThreeNote = new ShortThreeNote(drivebase);            
     private final Command LeftThreeNote = new LeftThreeNote(drivebase);   
     private final Command RightShootGetOuttaDodge = new RightShootGetOuttaDodge(drivebase);                      
-    private final Command LeftShootGetOuttaDodge = new LeftShootGetOuttaDodge(drivebase);                      
+    private final Command LeftShootGetOuttaDodge = new LeftShootGetOuttaDodge(drivebase);  
+    private final Command OneNoteDAuto = new OneNoteDAuto(drivebase);    
+    private final Command MultiNoteDAuto = new MultiNoteDAuto(drivebase);                                                                                
                    
 
 
@@ -91,6 +95,10 @@ public class RobotContainer {
         m_auto.addOption("getOuttaDodge", GetOuttaDodge);
         m_auto.addOption("RightShootGetOuttaDodge", RightShootGetOuttaDodge);
         m_auto.addOption("LeftShootGetOuttaDodge", LeftShootGetOuttaDodge);
+
+        m_auto.addOption("OneNoteDAuto", OneNoteDAuto);
+        m_auto.addOption("MultiNoteDAuto", MultiNoteDAuto);
+
         SmartDashboard.putData("Autonomous Routine", m_auto);
 
         configureButtonBindings();
