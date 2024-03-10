@@ -33,9 +33,9 @@ public class ShortThreeNote extends SequentialCommandGroup {
         addCommands(
             new DropIntake(intake).withTimeout(2.5),
             new StopIndexer(indexer).withTimeout(0.01),
-            new ReverseIndexer(indexer).withTimeout(0.2),
+            new ReverseIndexer(indexer).withTimeout(0.25),
             new StopIndexer(indexer).withTimeout(0.01),
-            new SpinUpShooter(shooter).withTimeout(0.01),
+            new SpinUpShooter(shooter).withTimeout(3.0),
 
             new AutoAbsoluteDrive(swerve, 0.22,0.0, 0.0, 0.0).withTimeout(0.4),
             new StopExtendRetract(intake).withTimeout(0.01),
@@ -76,9 +76,9 @@ public class ShortThreeNote extends SequentialCommandGroup {
             new AutoAbsoluteDrive(swerve,0.0,0.0,0.75,0.6).withTimeout(0.6), //angle for one
             new ZeroGyro(swerve).withTimeout(1),
             new AutoAbsoluteDrive(swerve,-0.7,0.0,0.0,0.0).withTimeout(0.2), 
-            new ReverseShooter(shooter,indexer).withTimeout(0.07),
+            new ReverseShooter(shooter,indexer).withTimeout(0.08),
             new StopIndexer(indexer).withTimeout(0.1),
-            new SpinUpShooter(shooter),
+            new SpinUpShooter(shooter).withTimeout(3),
             new AutoAbsoluteDrive(swerve,-0.55,0.0,0.0,0.0).withTimeout(0.6), 
             new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
             new AutoSmartFire(shooter, indexer).withTimeout(5),

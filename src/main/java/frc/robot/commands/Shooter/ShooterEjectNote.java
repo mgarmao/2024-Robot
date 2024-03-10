@@ -30,6 +30,7 @@ public class ShooterEjectNote extends Command
   @Override
   public void initialize()
   {
+    indexer.run(1);
     shooter.fire(0.3);
     timer.reset();
   }
@@ -38,30 +39,14 @@ public class ShooterEjectNote extends Command
   @Override
   public void execute()
   {
-    if((shooter.getRPM()>2000)&&!indexing){
-        indexer.run(0.4);
-        timer.start();
-        timerZero = timer.get();
-        indexing = true;
-    }
-    SmartDashboard.putNumber("Timer", timer.get());
+
   }
 
 
   @Override
   public boolean isFinished()
   {
-    SmartDashboard.putNumber("Timer", timer.get());
-    SmartDashboard.putNumber("TimerZero", timerZero);
-    if((timer.get()-timerZero)>=0.5){
-      shooter.fire(0);
-      indexer.run(0);
-      indexing=false;
-      return true;
-    }
-    else{
-      return false;
-    }
+    return false;
   }
 
 

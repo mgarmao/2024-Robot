@@ -21,7 +21,9 @@ import frc.robot.commands.Intake.RunIntake;
 import frc.robot.commands.Intake.StopExtendRetract;
 import frc.robot.commands.Intake.StopIntake;
 import frc.robot.commands.Shooter.AutoSmartFire;
+import frc.robot.commands.Shooter.ReverseShooter;
 import frc.robot.commands.Shooter.ReverseShooterSlow;
+import frc.robot.commands.Shooter.SpinUpShooter;
 import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.ZeroGyro;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
@@ -31,11 +33,12 @@ public class LeftStartFromAngle extends SequentialCommandGroup {
         addCommands(
             new DropIntake(intake).withTimeout(2.5),
             new StopIndexer(indexer).withTimeout(0.5),
-            new ReverseIndexer(indexer).withTimeout(0.2),
+            new ReverseIndexer(indexer).withTimeout(0.25),
             new StopIndexer(indexer).withTimeout(0.1),
             new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
             new StopExtendRetract(intake).withTimeout(0.1),
             
+            new SpinUpShooter(shooter).withTimeout(3),
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter),
             new ReverseShooterSlow(shooter).withTimeout(0.01),
@@ -57,7 +60,9 @@ public class LeftStartFromAngle extends SequentialCommandGroup {
             new ZeroGyro(swerve).withTimeout(0.1),
             
             new AutoAbsoluteDrive(swerve,-0.65,0.0,0.0,0.0).withTimeout(1.4),
+            new ReverseShooter(shooter,indexer).withTimeout(0.08),
             new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
+            new SpinUpShooter(shooter).withTimeout(3),
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter),
             new StopIntake(intake)

@@ -23,6 +23,7 @@ import frc.robot.commands.Intake.StopIntake;
 import frc.robot.commands.Shooter.AutoSmartFire;
 import frc.robot.commands.Shooter.ReverseShooter;
 import frc.robot.commands.Shooter.ReverseShooterSlow;
+import frc.robot.commands.Shooter.SpinUpShooter;
 import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.SetGyroOffset;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
@@ -34,11 +35,12 @@ public class BasicAuto extends SequentialCommandGroup {
 
             new DropIntake(intake).withTimeout(2.5),
             new StopIndexer(indexer).withTimeout(0.5),
-            new ReverseIndexer(indexer).withTimeout(0.2),
+            new ReverseIndexer(indexer).withTimeout(0.25),
             new StopIndexer(indexer).withTimeout(0.1),
             new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
             new StopExtendRetract(intake).withTimeout(0.1),
             
+            new SpinUpShooter(shooter).withTimeout(2),
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter),
             
@@ -52,7 +54,7 @@ public class BasicAuto extends SequentialCommandGroup {
             
             new AutoAbsoluteDrive(swerve,-0.75,0.0,0.0,0.0).withTimeout(2.5),
             new StopIntake(intake),
-            new ReverseShooter(shooter,indexer).withTimeout(0.07),
+            new ReverseShooter(shooter,indexer).withTimeout(0.08),
             new StopIndexer(indexer).withTimeout(0.1),
             new StopShooter(shooter).withTimeout(0.1),
             new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
