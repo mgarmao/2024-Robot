@@ -96,6 +96,7 @@ public class RobotContainer {
         m_auto.addOption("RightShootGetOuttaDodge", RightShootGetOuttaDodge);
         m_auto.addOption("LeftShootGetOuttaDodge", LeftShootGetOuttaDodge);
 
+        
         m_auto.addOption("OneNoteDAuto", OneNoteDAuto);
         m_auto.addOption("MultiNoteDAuto", MultiNoteDAuto);
 
