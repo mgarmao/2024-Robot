@@ -50,6 +50,8 @@ public class RobotContainer {
     public final CommandXboxController driverXbox = new CommandXboxController(Constants.CONTROLLER_OPERATOR);
     private final Joystick leftStick = new Joystick(1);
     private final Joystick rightStick = new Joystick(2);
+
+
     private Translation2d targetPosition = new Translation2d(1,0);
 
     public static final Shooter shooter = new Shooter(); 
@@ -166,6 +168,9 @@ public class RobotContainer {
         
         driverXbox.povRight().onTrue(new AutoClimb(driverXbox)).onFalse(climber.stop());
         driverXbox.povLeft().onTrue(new InstantCommand(()->shooter.fire(0.35))).onFalse(shooter.stop());
+
+        new JoystickButton(rightStick, 1).onTrue(new InstantCommand(drivebase::zeroGyro));
+        new JoystickButton(leftStick, 1).onTrue(new InstantCommand(drivebase::zeroGyro));
 
         // new JoystickButton(leftStick, 2).(() -> Intake.eject(Constants.EJECT_SPEED)).whenReleased(() -> Intake.stop());
 
