@@ -74,7 +74,7 @@ public class ThreeNote extends SequentialCommandGroup {
             new ChaseNote(swerve, 0.7, 0.0, 0.0).withTimeout(0.5),
             new AutoAbsoluteDrive(swerve,0.7,0.0,0.0,0.0).withTimeout(0.9),
 
-            new AutoAbsoluteDrive(swerve,-0.8,0.0,0.0,0.0).withTimeout(0.85),
+            new AutoAbsoluteDrive(swerve,-0.8,0.0,0.0,0.0).withTimeout(1),
                   
             new AutoAbsoluteDrive(swerve,0.0,0.0,0.75,0.6).withTimeout(0.6), //angle for one
             new ZeroGyro(swerve).withTimeout(1),
