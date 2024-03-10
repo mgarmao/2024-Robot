@@ -79,7 +79,16 @@ public class ThreeNote extends SequentialCommandGroup {
             new AutoAbsoluteDrive(swerve,0.0,0.0,0.75,0.6).withTimeout(0.6), //angle for one
             new ZeroGyro(swerve).withTimeout(1),
             new AutoAbsoluteDrive(swerve,-0.7,0.0,0.0,0.0).withTimeout(0.45), 
-            new AutoAbsoluteDrive(swerve,-0.55,0.0,0.0,0.0).withTimeout(0.8) 
+            new AutoAbsoluteDrive(swerve,-0.55,0.0,0.0,0.0).withTimeout(0.8), 
+            
+            new StopIndexer(indexer).withTimeout(0.1),
+            new StopShooter(shooter).withTimeout(0.1),
+            new ReverseShooter(shooter,indexer).withTimeout(0.07),
+            new SpinUpShooter(shooter),
+            new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
+            new AutoSmartFire(shooter, indexer).withTimeout(5),
+            new StopShooter(shooter).withTimeout(0.1)    
+        
         );
     }
 }

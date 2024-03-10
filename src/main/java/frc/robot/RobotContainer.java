@@ -166,6 +166,9 @@ public class RobotContainer {
         
         driverXbox.povRight().onTrue(new AutoClimb(driverXbox)).onFalse(climber.stop());
         driverXbox.povLeft().onTrue(new InstantCommand(()->shooter.fire(0.35))).onFalse(shooter.stop());
+
+        // new JoystickButton(leftStick, 2).(() -> Intake.eject(Constants.EJECT_SPEED)).whenReleased(() -> Intake.stop());
+
         // driverXbox.button(3).onTrue(new InstantCommand(drivebase::addFakeVisionReading));
     }
 

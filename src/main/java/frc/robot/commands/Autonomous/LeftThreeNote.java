@@ -46,13 +46,13 @@ public class LeftThreeNote extends SequentialCommandGroup {
             
             new ReverseShooterSlow(shooter).withTimeout(0.01),
             new RunIntake(intake,indexer).withTimeout(0.1),
-            new ChaseNote(swerve, 0.65, 0.0, 0.0).withTimeout(1.1),
-            new AutoAbsoluteDrive(swerve, 0.6,0.0, 0.0, 0.0).withTimeout(0.3),
+            new ChaseNote(swerve, 0.8, 0.0, 0.0).withTimeout(0.75),
+            new AutoAbsoluteDrive(swerve, 0.6,0.0, 0.0, 0.0).withTimeout(0.2),
             new RaiseIntake(intake).withTimeout(0.3),
             new DropIntake(intake).withTimeout(0.3),
             new StopExtendRetract(intake).withTimeout(0.1),
             
-            new AutoAbsoluteDrive(swerve,-0.75,0.0,0.0,0.0).withTimeout(2.5),
+            new AutoAbsoluteDrive(swerve,-0.6,0.0,0.0,0.0).withTimeout(2),
             new StopIntake(intake).withTimeout(0.01),
             new ReverseShooter(shooter,indexer).withTimeout(0.07),
             new StopIndexer(indexer).withTimeout(0.1),
@@ -65,21 +65,28 @@ public class LeftThreeNote extends SequentialCommandGroup {
             ///////////
 
             new AutoAbsoluteDrive(swerve,0.85,0.0,0.0,0.0).withTimeout(0.3),
-            new AutoAbsoluteDrive(swerve,0.0,0.0,0.6,0.5).withTimeout(1.5), //angle for one
+            new AutoAbsoluteDrive(swerve,0.0,0.0,0.6,0.5).withTimeout(0.5), //angle for 1
             new ZeroGyro(swerve).withTimeout(1),
             
             new ReverseShooterSlow(shooter).withTimeout(0.01),
             new RunIntake(intake,indexer).withTimeout(1),
-            new AutoAbsoluteDrive(swerve,0.7,0.0,0.0,0.0).withTimeout(0.3),
-            new ChaseNote(swerve, 0.7, 0.0, 0.0).withTimeout(0.5),
-            new AutoAbsoluteDrive(swerve,0.7,0.0,0.0,0.0).withTimeout(0.9),
+            new AutoAbsoluteDrive(swerve,0.85,0.0,0.0,0.0).withTimeout(0.2),
+            new ChaseNote(swerve, 0.75, 0.0, 0.0).withTimeout(0.4),
+            new AutoAbsoluteDrive(swerve,0.8,0.0,0.0,0.0).withTimeout(0.4),
 
             new AutoAbsoluteDrive(swerve,-0.8,0.0,0.0,0.0).withTimeout(0.85),
                   
-            new AutoAbsoluteDrive(swerve,0.0,0.0,-0.75,0.6).withTimeout(0.6), //angle for one
-            new ZeroGyro(swerve).withTimeout(1),
-            new AutoAbsoluteDrive(swerve,-0.7,0.0,0.0,0.0).withTimeout(0.45), 
-            new AutoAbsoluteDrive(swerve,-0.55,0.0,0.0,0.0).withTimeout(0.8) 
+            new AutoAbsoluteDrive(swerve,0.0,0.0,-0.75,0.6).withTimeout(0.5), //angle for 2
+            new ZeroGyro(swerve).withTimeout(0.1),
+            new AutoAbsoluteDrive(swerve,-0.6,0.0,0.0,0.0).withTimeout(0.5), 
+            
+            new StopIndexer(indexer).withTimeout(0.1),
+            new StopShooter(shooter).withTimeout(0.1),
+            new ReverseShooter(shooter,indexer).withTimeout(0.07),
+            new SpinUpShooter(shooter),
+            new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
+            new AutoSmartFire(shooter, indexer).withTimeout(5),
+            new StopShooter(shooter).withTimeout(0.1)
         );
     }
 }
