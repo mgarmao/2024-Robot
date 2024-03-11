@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.DutyCycleOut;
@@ -67,6 +68,8 @@ public class Intake extends SubsystemBase {
         rotator2.enableSoftLimit(SoftLimitDirection.kReverse, false);
 
         rotator2.follow(rotator1);
+        
+        SignalLogger.enableAutoLogging(false);
     }
 
     /** Retrieve cargo for transportation. */

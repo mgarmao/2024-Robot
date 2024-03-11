@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
@@ -30,7 +31,8 @@ public class Indexer extends SubsystemBase {
         motor.setNeutralMode(NeutralModeValue.Brake);
         motor.setInverted(false);
 
-        
+        SignalLogger.enableAutoLogging(false);
+
 
     
         /**
