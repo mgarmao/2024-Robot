@@ -26,13 +26,14 @@ import frc.robot.commands.Shooter.ReverseShooterSlow;
 import frc.robot.commands.Shooter.SpinUpShooter;
 import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.SetGyroOffset;
+import frc.robot.commands.swervedrive.drivebase.ZeroGyro;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 
 public class BasicAuto extends SequentialCommandGroup {
     public BasicAuto(SwerveSubsystem swerve) {
         addCommands(
             // new SetGyroOffset(swerve, Math.PI).withTimeout(0.2),
-
+            new ZeroGyro(swerve),
             new DropIntake(intake).withTimeout(2.5),
             new StopIndexer(indexer).withTimeout(0.5),
             new ReverseIndexer(indexer).withTimeout(0.25),
@@ -40,7 +41,6 @@ public class BasicAuto extends SequentialCommandGroup {
             new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
             new StopExtendRetract(intake).withTimeout(0.1),
             
-            new SpinUpShooter(shooter).withTimeout(2),
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter),
             
@@ -59,7 +59,11 @@ public class BasicAuto extends SequentialCommandGroup {
             new StopShooter(shooter).withTimeout(0.1),
             new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
             new AutoSmartFire(shooter, indexer).withTimeout(5),
-            new StopShooter(shooter)
+            new StopShooter(shooter),
+
+            new SetGyroOffset(swerve, 3.7).withTimeout(0.1)
+            // new AutoAbsoluteDrive(swerve, 0.0,0.0, 0.0, -1.0).withTimeout(0.1)
+
         );
     }
 }
