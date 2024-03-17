@@ -175,8 +175,8 @@ public class RobotContainer {
 
         driverXbox.y().toggleOnTrue(new InstantCommand(() -> shooter.fire(0.9))).onFalse(new InstantCommand(() -> shooter.fire(0)));
         
-        driverXbox.povRight().onTrue(new AutoClimb(driverXbox)).onFalse(climber.stop());
-        driverXbox.povLeft().onTrue(new InstantCommand(()->shooter.fire(0.35))).onFalse(shooter.stop());
+        // driverXbox.povRight().onTrue(new AutoClimb(driverXbox)).onFalse(climber.stop());
+        driverXbox.povLeft().onTrue(new InstantCommand(()->shooter.setRPM(3200))).onFalse(shooter.stop());
 
         new JoystickButton(rightStick, 1).onTrue(new InstantCommand(drivebase::zeroGyro));
         new JoystickButton(leftStick, 1).onTrue(new InstantCommand(drivebase::zeroGyro));
