@@ -59,6 +59,8 @@ public final class Constants
   public static double indexerShootSpeed = 0.9;
   public static double indexerIntakeSpeed = 0.07;
 
+  public static double offsetAngle = Math.PI;
+
   public static final class Auton
   {
 

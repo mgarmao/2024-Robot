@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -17,6 +18,8 @@ import static frc.robot.RobotContainer.indexer;
 import static frc.robot.RobotContainer.intake;
 import static frc.robot.RobotContainer.photon;
 import static frc.robot.RobotContainer.shooter;
+
+import frc.robot.commands.swervedrive.drivebase.SetGyroOffset;
 
 import java.io.File;
 import java.io.IOException;
@@ -142,7 +145,10 @@ public class Robot extends TimedRobot
     if (m_autonomousCommand != null)
     {
       m_autonomousCommand.cancel();
+      Rotation3d rotation3dOffsetRads = new Rotation3d(0.0,0.0,Constants.offsetAngle);
+      m_robotContainer.drivebase.setGyroOffset(rotation3dOffsetRads);
     }
+
     m_robotContainer.setDriveMode();
     m_robotContainer.setMotorBrake(true);
   }
