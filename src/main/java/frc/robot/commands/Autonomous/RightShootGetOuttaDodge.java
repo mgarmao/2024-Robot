@@ -41,12 +41,8 @@ public class RightShootGetOuttaDodge extends SequentialCommandGroup {
             new AutoSmartFire(shooter, indexer).withTimeout(5),
             new StopShooter(shooter),
             
-            new AutoAbsoluteDrive(swerve,0.5,0.0,0.0,0.0).withTimeout(3),
+            new AutoAbsoluteDrive(swerve,0.5,0.0,0.0,0.0).withTimeout(3)
 
-            new AutoAbsoluteDrive(swerve,0.0,0.0,0.4,-0.4).withTimeout(2), //angle
-            new ZeroGyro(swerve),
-
-            new AutoAbsoluteDrive(swerve, 0.5,0.0, 0.0, 0.0).withTimeout(2)
         );
   }
 }
