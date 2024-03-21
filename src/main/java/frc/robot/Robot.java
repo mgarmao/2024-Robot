@@ -145,12 +145,11 @@ public class Robot extends TimedRobot
     if (m_autonomousCommand != null)
     {
       m_autonomousCommand.cancel();
-      Rotation3d rotation3dOffsetRads = new Rotation3d(0.0,0.0,Constants.offsetAngle);
-      m_robotContainer.drivebase.setGyroOffset(rotation3dOffsetRads);
+
     }
 
-    m_robotContainer.setDriveMode();
-    m_robotContainer.setMotorBrake(true);
+      m_robotContainer.setDriveMode();
+      m_robotContainer.setMotorBrake(true);
   }
 
   /**

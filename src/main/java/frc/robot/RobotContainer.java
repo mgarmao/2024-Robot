@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -35,7 +36,9 @@ import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteFieldDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.commands.swervedrive.drivebase.TeleopDrive;
+import frc.robot.commands.swervedrive.drivebase.SetGyroOffset;
 import frc.robot.subsystems.Climber;
+// import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Gyroscope;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
@@ -43,7 +46,6 @@ import frc.robot.subsystems.Photon;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
-import swervelib.SwerveDrive;
 
 import java.io.File;
 
@@ -63,6 +65,7 @@ public class RobotContainer {
     public static final Photon photon = new Photon();
     public static final Indexer indexer =  new Indexer(); 
     public static final Gyroscope gyroscope = new Gyroscope();
+    // public static final ColorSensor colorSensor = new ColorSensor();
     
     private SendableChooser<Command> m_auto = new SendableChooser<>();
     private final Command BasicAuto = new BasicAuto(drivebase); 
@@ -79,6 +82,7 @@ public class RobotContainer {
     private final Command MultiNoteDAuto = new MultiNoteDAuto(drivebase);                                                                                
                    
 
+    // Rotation3d rotation3dOffsetRads = new Rotation3d(0.0,0.0,Constants.offsetAngle);
 
     private final Command SmartFire = new SmartFire(shooter,indexer,driverXbox);   
     private final Command StopShooter = new StopShooter(shooter); 
@@ -153,7 +157,8 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        driverXbox.a().onTrue((new InstantCommand(drivebase::zeroGyro)));
+
+        // driverXbox.a().onTrue(new InstantCommand(()->drivebase.setGyroOffset(rotation3dOffsetRads)));
                 
         driverXbox.rightTrigger().onTrue(new InstantCommand(()->indexer.run(0.95))).onFalse(new InstantCommand(()->indexer.stop()));
         // driverXbox.rightTrigger().toggleOnTrue(indexer.run(1)).toggleOnFalse(indexer.stop());

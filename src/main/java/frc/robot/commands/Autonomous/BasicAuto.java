@@ -59,9 +59,9 @@ public class BasicAuto extends SequentialCommandGroup {
             new StopShooter(shooter).withTimeout(0.1),
             new AutoAbsoluteDrive(swerve, 0.2,0.0, 0.0, 0.0).withTimeout(0.4),
             new AutoSmartFire(shooter, indexer).withTimeout(5),
-            new StopShooter(shooter),
+            new StopShooter(shooter)
 
-            new SetGyroOffset(swerve, 3.7).withTimeout(0.1)
+            // new SetGyroOffset(swerve, 3.7).withTimeout(0.1)
             // new AutoAbsoluteDrive(swerve, 0.0,0.0, 0.0, -1.0).withTimeout(0.1)
 
         );

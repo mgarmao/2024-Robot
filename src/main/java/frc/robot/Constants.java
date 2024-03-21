@@ -27,7 +27,7 @@ public final class Constants
 
   public static final int Shooter1 = 9;
   public static final int Shooter2 = 10;
-  public static final int ShooterAmpLimit = 35;
+  public static final int ShooterAmpLimit = 45;
 
   public static final int Intake = 13;
   public static final int rotator1 = 11;
@@ -43,7 +43,7 @@ public final class Constants
   public static final int ClimberAmpLimit = 10;
 
   public static final int IndexMotor = 14;
-  public static final int IndexerAmpLimit = 45;
+  public static final int IndexerAmpLimit = 60;
 
   public static int requestedPipeline = 0;
   public static int startingApriltag = 0;
@@ -54,13 +54,14 @@ public final class Constants
   public static int RingPipeline = 0;
   public static int ApriltagPipeline = 1;
 
-  public static int smartShooterRPMThresh = 4500;
+  public static int smartShooterRPMThresh = 3500;
 
   public static double indexerShootSpeed = 0.9;
-  public static double indexerIntakeSpeed = 0.07;
+  public static double indexerIntakeSpeed = 0.15;
 
-  public static double offsetAngle = Math.PI;
+  // public static double offsetAngle = 0;
 
+  public static double redColorSensorThresh = 0.30;
   public static final class Auton
   {
 
