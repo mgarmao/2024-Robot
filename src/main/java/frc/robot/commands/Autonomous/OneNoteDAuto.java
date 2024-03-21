@@ -29,12 +29,14 @@ public class OneNoteDAuto extends SequentialCommandGroup {
             new DropIntake(intake).withTimeout(1.5),
             new StopExtendRetract(intake),
             new RunIntake(intake,indexer).withTimeout(0.1),
-            new AutoAbsoluteDrive(swerve,-0.7,0.0,0.0,0.0).withTimeout(4.0),
-            new ChaseNote(swerve, -0.8, 0.0, 0.0).withTimeout(2.5),
+            new AutoAbsoluteDrive(swerve,0.85,0.0,0.0,0.0).withTimeout(1.6),
+            new ChaseNote(swerve, 0.8, 0.0, 0.0).withTimeout(1.0),
+            new AutoAbsoluteDrive(swerve,0.85,0.0,0.0,0.0).withTimeout(0.2),
+            
             new RaiseIntake(intake).withTimeout(0.3),
             new DropIntake(intake).withTimeout(0.3),
             new StopExtendRetract(intake).withTimeout(0.1),
-            new AutoAbsoluteDrive(swerve,0.75,0.0,0.0,0.0).withTimeout(3.5)
+            new AutoAbsoluteDrive(swerve,-0.75,0.0,0.0,0.0).withTimeout(3.0)
         );
   }
 }
