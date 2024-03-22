@@ -13,10 +13,10 @@ public class ShooterEjectNote extends Command
 
     public ShooterEjectNote(Shooter shooter, Indexer indexer)
     {
-        this.shooter = shooter;
-        this.indexer = indexer;
-        addRequirements(this.shooter);
-        addRequirements(this.indexer);
+      this.shooter = shooter;
+      this.indexer = indexer;
+      addRequirements(this.shooter);
+      addRequirements(this.indexer);
     }
 
 
@@ -24,7 +24,7 @@ public class ShooterEjectNote extends Command
   public void initialize()
   {
     indexer.run(1);
-    shooter.fire(0.3);
+    shooter.fire(0.35);
   }
 
 
