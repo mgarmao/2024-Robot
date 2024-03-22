@@ -24,7 +24,6 @@ public class ChaseNote extends Command
 
     private final SwerveSubsystem swerve;
     private final Double vX;
-    private double vY=0;
     private double PID = 0; 
     double kP = 0.027;
     double kI = 0.0;

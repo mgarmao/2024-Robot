@@ -4,8 +4,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -33,8 +31,8 @@ public class Climber extends SubsystemBase {
         motor.setSmartCurrentLimit(Constants.ClimberAmpLimit);
         motor2.setSmartCurrentLimit(Constants.ClimberAmpLimit);
 
-        final float motorZero = (float)motor.getEncoder().getPosition();
-        final float motor2Zero = (float)motor2.getEncoder().getPosition();
+        // final float motorZero = (float)motor.getEncoder().getPosition();
+        // final float motor2Zero = (float)motor2.getEncoder().getPosition();
 
         motor.setSoftLimit(SoftLimitDirection.kReverse, Constants.ClimberUpperLimit);
         motor.setSoftLimit(SoftLimitDirection.kForward, Constants.ClimberLowerLimit);

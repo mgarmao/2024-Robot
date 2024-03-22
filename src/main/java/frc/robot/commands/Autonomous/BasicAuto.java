@@ -23,9 +23,7 @@ import frc.robot.commands.Intake.StopIntake;
 import frc.robot.commands.Shooter.AutoSmartFire;
 import frc.robot.commands.Shooter.ReverseShooter;
 import frc.robot.commands.Shooter.ReverseShooterSlow;
-import frc.robot.commands.Shooter.SpinUpShooter;
 import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
-import frc.robot.commands.swervedrive.drivebase.SetGyroOffset;
 import frc.robot.commands.swervedrive.drivebase.ZeroGyro;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 

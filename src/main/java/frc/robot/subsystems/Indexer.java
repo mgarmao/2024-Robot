@@ -9,17 +9,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.ctre.phoenix6.SignalLogger;
-import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 public class Indexer extends SubsystemBase {
     // private final CANcoder motor_cc = new CANcoder(0);
     private final TalonFX motor = new TalonFX(2);
-    private final DutyCycleOut m_dutycycle = new DutyCycleOut(0); 
+    // private final DutyCycleOut m_dutycycle = new DutyCycleOut(0); 
 
     public Indexer() {
         /** Create a new object to control the SPARK MAX motor controllers. */

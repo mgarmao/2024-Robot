@@ -14,7 +14,6 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
@@ -24,7 +23,7 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
     // private final CANcoder motor_cc = new CANcoder(0);
     private final TalonFX motor = new TalonFX(1);
-    private final DutyCycleOut m_dutycycle = new DutyCycleOut(0);
+    // private final DutyCycleOut m_dutycycle = new DutyCycleOut(0);
     
     private CANSparkMax rotator1;
     private CANSparkMax rotator2;

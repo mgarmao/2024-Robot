@@ -18,7 +18,6 @@ import frc.robot.commands.Intake.RaiseIntake;
 import frc.robot.commands.Intake.RunIntake;
 import frc.robot.commands.Intake.StopExtendRetract;
 import frc.robot.commands.Intake.StopIntake;
-import frc.robot.commands.Shooter.AutoSmartFire;
 import frc.robot.commands.Shooter.ReverseShooter;
 import frc.robot.commands.Shooter.ShooterEjectNote;
 import frc.robot.commands.swervedrive.drivebase.AutoAbsoluteDrive;
