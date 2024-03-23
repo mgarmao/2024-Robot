@@ -24,7 +24,7 @@ public class ShooterEjectNote extends Command
   public void initialize()
   {
     indexer.run(1);
-    shooter.fire(0.35);
+    shooter.fire(0.25);
   }
 
 
