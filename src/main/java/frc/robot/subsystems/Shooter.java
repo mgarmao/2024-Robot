@@ -87,17 +87,17 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("Shooter M1 RPM", encoder.getVelocity());
         SmartDashboard.putNumber("Shooter M2 RPM", encoder2.getVelocity());
         
-        if(driverXbox.povLeft().getAsBoolean()){
-            PIDController.setSetpoint(desiredRPM);
-            double motorPIDOutput = clamp(PIDController.calculate(motor.getEncoder().getVelocity(),desiredRPM),-1,1);
-            double motor2PIDOutput = clamp(PIDController.calculate(motor2.getEncoder().getVelocity(),desiredRPM),-1,1);
+        // if(driverXbox.povLeft().getAsBoolean()){
+        //     PIDController.setSetpoint(desiredRPM);
+        //     double motorPIDOutput = clamp(PIDController.calculate(motor.getEncoder().getVelocity(),desiredRPM),-1,1);
+        //     double motor2PIDOutput = clamp(PIDController.calculate(motor2.getEncoder().getVelocity(),desiredRPM),-1,1);
 
             
-            SmartDashboard.putNumber("ShooterPID1", motorPIDOutput);
-            SmartDashboard.putNumber("ShooterPID2", motor2PIDOutput);
-            motor.set(motorPIDOutput);
-            motor2.set(motor2PIDOutput);
-        }
+        //     SmartDashboard.putNumber("ShooterPID1", motorPIDOutput);
+        //     SmartDashboard.putNumber("ShooterPID2", motor2PIDOutput);
+        //     motor.set(motorPIDOutput);
+        //     motor2.set(motor2PIDOutput);
+        // }
 
     }
 

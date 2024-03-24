@@ -29,7 +29,7 @@ public class LeftThreeNote extends SequentialCommandGroup {
             new ZeroGyro(swerve),
             new DropIntake(intake).withTimeout(1.0),
             new StopIndexer(indexer).withTimeout(0.01),
-            new ReverseIndexer(indexer).withTimeout(0.4),
+            new ReverseIndexer(indexer).withTimeout(0.15),
             new StopIndexer(indexer).withTimeout(0.01),
             new SpinUpShooter(shooter).withTimeout(0.01),
 
