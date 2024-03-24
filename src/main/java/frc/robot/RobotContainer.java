@@ -25,6 +25,8 @@ import frc.robot.commands.Autonomous.LeftShootGetOuttaDodge;
 import frc.robot.commands.Autonomous.RightStartFromAngle;
 import frc.robot.commands.Autonomous.OneNoteDAuto;
 import frc.robot.commands.Autonomous.MultiNoteDAuto;
+import frc.robot.commands.Autonomous.RightAngleTwoNote;
+import frc.robot.commands.Autonomous.LeftAngleTwoNote;
 import frc.robot.commands.Shooter.SmartFire;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteFieldDrive;
@@ -72,7 +74,9 @@ public class RobotContainer {
     private final Command RightShootGetOuttaDodge = new RightShootGetOuttaDodge(drivebase);                      
     private final Command LeftShootGetOuttaDodge = new LeftShootGetOuttaDodge(drivebase);  
     private final Command OneNoteDAuto = new OneNoteDAuto(drivebase);    
-    private final Command MultiNoteDAuto = new MultiNoteDAuto(drivebase);                                                                                
+    private final Command MultiNoteDAuto = new MultiNoteDAuto(drivebase);         
+    private final Command RightAngleTwoNote = new RightAngleTwoNote(drivebase);     
+    private final Command LeftAngleTwoNote = new LeftAngleTwoNote(drivebase);                                                                                                                                                                                                                                                                                                         
                    
 
     // Rotation3d rotation3dOffsetRads = new Rotation3d(0.0,0.0,Constants.offsetAngle);
@@ -93,6 +97,8 @@ public class RobotContainer {
         m_auto.addOption("RightShootGetOuttaDodge", RightShootGetOuttaDodge);
         m_auto.addOption("LeftShootGetOuttaDodge", LeftShootGetOuttaDodge);
 
+        m_auto.addOption("RightAngleTwoNote", RightAngleTwoNote);
+        m_auto.addOption("LeftAngleTwoNote", LeftAngleTwoNote);
         
         m_auto.addOption("OneNoteDAuto", OneNoteDAuto);
         m_auto.addOption("MultiNoteDAuto", MultiNoteDAuto);

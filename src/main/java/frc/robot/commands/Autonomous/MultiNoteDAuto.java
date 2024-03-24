@@ -36,8 +36,8 @@ public class MultiNoteDAuto extends SequentialCommandGroup {
             new ChaseNote(swerve, 0.8, 0.0, 0.0).withTimeout(0.8),
             new AutoAbsoluteDrive(swerve,0.85,0.0,0.0,0.0).withTimeout(0.2),
             new AutoAbsoluteDrive(swerve,-0.85,0.0,0.0,0.0).withTimeout(0.2),
-            new ShooterEjectNote(shooter, indexer).withTimeout(0.9),
-            new AutoAbsoluteDrive(swerve,0.0,0.0,0.9,0.0).withTimeout(0.8),
+            new ShooterEjectNote(shooter, indexer).withTimeout(1.0),
+            new AutoAbsoluteDrive(swerve,0.0,0.0,0.9,0.0).withTimeout(0.8), //ANGLE
             new AutoAbsoluteDrive(swerve,0.0,0.6,0.9,0.15).withTimeout(3.8)
 
 
