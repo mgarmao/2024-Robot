@@ -55,8 +55,8 @@ public class RightAngleTwoNote extends SequentialCommandGroup {
             new ReverseShooterSlow(shooter).withTimeout(0.01),
             new RunIntake(intake,indexer).withTimeout(0.01),
 
-            new AutoAbsoluteDrive(swerve,0.7,0.0,0.0,0.0).withTimeout(0.5),
-            new ChaseNote(swerve, 0.7, 0.0, 0.0).withTimeout(0.6),
+            new AutoAbsoluteDrive(swerve,0.7,0.0,0.0,0.0).withTimeout(0.6),
+            new ChaseNote(swerve, 0.7, 0.0, 0.0).withTimeout(0.5),
             new AutoAbsoluteDrive(swerve,0.7,0.0,0.0,0.0).withTimeout(0.3),
             ///
 
@@ -72,7 +72,7 @@ public class RightAngleTwoNote extends SequentialCommandGroup {
             //Aiming into fender
             new ReverseShooter(shooter, indexer).withTimeout(0.01),
             new AutoAbsoluteDrive(swerve,-0.7,0.0,0.0,0.0).withTimeout(0.1), 
-            new AutoAbsoluteDrive(swerve,0.0,0.0,0.0,0.0).withTimeout(0.01), 
+            new AutoAbsoluteDrive(swerve,-0.3,0.0,0.0,0.0).withTimeout(0.4), 
             new StopIndexer(indexer).withTimeout(0.01),
             new StopShooter(shooter).withTimeout(0.01),
 
